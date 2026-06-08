@@ -1,0 +1,337 @@
+
+### QUERY: pilot lost control in turbulence
+   0. ERA19FA034  The pilot's improper decision to operate the gyroplane in an unairworthy condition, which resulted in the cyclic pitch control disconnecting in flight. Contributing was the pilot's inability to maintain control of the helicopter utilizing t
+   1. CEN17FA168  The pilot's loss of airplane control due to spatial disorientation during the initial climb after takeoff in night instrument meteorological conditions and moderate turbulence.
+   2. WPR17FA023  The pilot's loss of airplane control following an encounter with low level wind shear and turbulence during final approach for landing. Contributing to the loss of control was the pilot's decision to retract the wing flaps on final approach
+   3. ERA18LA002  The pilot's failure to maintain adequate distance from helicopters during the approach for landing, resulting in an encounter with wake turbulence and subsequent loss of control.
+   4. ERA16FA279  The pilot's loss of control due to spatial disorientation shortly after takeoff, while maneuvering over water during dark night conditions.
+   5. GAA17CA040  The pilot's improper pitch and power control during landing in a straight float-equipped airplane on grass in crosswind conditions, which resulted in a loss of directional control.
+   6. WPR17LA186  The pilot’s loss of airplane control after flying through another airplane's jet wash during an air defense exercise.
+   7. WPR22LA072  The pilot’s loss of airplane control during a go-around as it encountered wake turbulence from a slow hover taxiing helicopter.
+   8. ERA18FA167  A loss of control due to spatial disorientation while climbing after departure in instrument meteorological conditions. Contributing to the accident was the pilot's lack of recent instrument experience.
+   9. ANC20FA005  A loss of control in flight due to the pilot’s decision to fly into a mountain range, at night, in conditions conducive to high wind, mountain waves, and turbulence.
+  10. CEN16FA361  The non-instrument-rated pilot's loss of control due to spatial disorientation in instrument meteorological conditions, which resulted in an exceedance of the airplane's design stress limitations and a subsequent in-flight breakup. Contribu
+  11. ANC23FA008  Guardian Flight’s inadequate pilot training and performance tracking, which failed to identify and correct the pilot’s consistent lack of skill, and which resulted in the pilot’s inability to maintain his position inflight using secondary i
+  12. WPR16FA130  An encounter with turbulence due to updrafts and/or dust devils that resulted in mast bumping and an in-flight break-up.
+  13. CEN23FA031  The pilot’s flight into low instrument flight rules conditions and turbulence, which resulted in spatial disorientation, loss of control, and an impact with terrain. Contributing to the accident was the pilot’s lack of total instrument expe
+  14. WPR23LA099  The pilot’s inability to maintain altitude following an encounter with turbulence and adverse wind conditions.
+  15. ERA16CA246  The flight's encounter with unforecast extreme turbulence, which resulted in a loss of airplane control and structural damage.
+  16. WPR17LA177  The pilot's failure to maintain directional control during a period of thermal activity, which led to a runway excursion and impact with terrain.
+  17. ERA19FA113  The pilot's spatial disorientation and loss of airplane control following takeoff in night instrument meteorological conditions.
+  18. WPR16FA059  The pilot’s failure to maintain airplane control during an instrument approach in night instrument meteorological conditions, which resulted in a collision with terrain. Contributing to the accident was the pilot’s lack of recent experience
+  19. ERA17FA313  The pilot's loss of airplane control due to spatial disorientation while flying in instrument meteorological conditions in the vicinity of adverse weather conditions.
+  20. ERA19FA130  The pilot's loss of airplane control due to spatial disorientation while flying in instrument meteorological conditions. Contributing to the accident was the failure of the vacuum pump and its associated instruments.
+  21. CEN17LA232  The pilot's failure to maintain helicopter control for reasons that could not be determined because postaccident examination of the helicopter did not reveal any preimpact mechanical malfunctions or anomalies that would have precluded norma
+
+### QUERY: ran out of fuel and the engine quit
+   0. WPR18LA125  A partial loss of engine power for undetermined reasons.
+   1. ANC23LA013  The pilot's failure to remove all water from the fuel tank, which resulted in fuel contamination and a subsequent partial loss of engine power.
+   2. WPR18LA194  A total loss of engine power due to fuel starvation for reasons that could not be determined based on the available information.
+   3. CEN17LA180  The total loss of engine power due to fuel starvation.
+   4. ERA17LA276  A total loss of engine power for reasons that could not be determined based on the available evidence.
+   5. CEN17LA357  A total loss of engine power for reasons that could not be determined because postaccident examination of the engine did not reveal any evidence of mechanical malfunctions or failures that would have precluded normal operation.
+   6. WPR17LA036  The total loss of engine power due to fuel starvation during approach, which necessitated a gear-up landing on unsuitable terrain.
+   7. CEN17LA065  Improper maintenance of the fuel pressure regulator, which resulted in an excessive fuel and airbox pressure differential and subsequent loss of engine power.
+   8. CEN22LA377  The pilot’s improper in-flight fuel management, which led to a loss of engine power due to fuel starvation. Contributing to the accident was the collapsed carburetor heat induction tube that restricted airflow to the engine preventing engin
+   9. ERA23LA053  A total loss of engine power due to fuel exhaustion. Contributing to the fuel exhaustion was the likely inaccurate right fuel quantity indicating system.
+  10. ANC19LA032  The pilot's improper verification of the fuel quantity during the preflight inspection, which resulted in fuel exhaustion and a subsequent total loss of engine power.
+  11. ERA23LA035  The pilot’s inadequate preflight fuel planning, which resulted in a total loss of engine power due to fuel exhaustion.
+  12. CEN18LA287  The pilot's excessive leaning of the fuel mixture, which resulted in a loss of engine power, and the pilot's failure to extend the landing gear in accordance with the airplane emergency checklist, which resulted in a gear-up landing.
+  13. CEN24LA022  The pilot’s inadequate fuel planning, which resulted in a total loss of engine power due to fuel exhaustion.
+  14. CEN22LA355  The student pilot’s inadequate fuel planning and improper in-flight decision-making which resulted in a total loss of engine power due to fuel exhaustion.
+  15. ERA16FA108  The pilot's improper preflight fuel planning, which resulted in a total loss of engine power due to fuel exhaustion. Contributing to the severity of the pilot's injuries was his failure to have a properly secured shoulder harness at the tim
+  16. WPR24LA048  The pilot's inadequate fuel planning and improper in-flight decision-making, which resulted in a total loss of engine power due to fuel exhaustion.
+  17. CEN22LA157  A loss of engine power for a reason that could not be determined based on available information.
+  18. CEN18LA124  The loss of engine power due to fuel exhaustion.
+  19. CEN19LA157  A total loss of engine power due to fuel starvation.
+  20. ERA17LA282  A total loss of engine power for reasons that could not be determined because postaccident examination and a test run of the engine did not reveal any evidence of mechanical malfunctions or failures that would have precluded normal operatio
+  21. ERA16LA204  The pilot's failure to attain adequate airspeed during the initial climb after takeoff, which led to the airplane exceeding its critical angle of attack and experiencing an aerodynamic stall.
+  22. ERA16LA199  A total loss of engine power for reasons that could not be determined because the engine ran normally during a postaccident engine test run with no anomalies noted.
+
+### QUERY: hard landing that damaged the airplane
+   0. GAA18CA326  The pilot’s improper landing flare, which resulted in a hard landing.
+   1. GAA19CA581  The student pilot's improper landing flare, which resulted in a hard landing and a collapsed nose landing gear.
+   2. GAA18CA562  The pilot's failure to maintain a proper descent rate, which resulted in a hard landing.
+   3. GAA19CA380  The pilot's improper landing flare, which resulted in a hard landing.
+   4. GAA18CA398  The pilot's improper landing flare, which resulted in a hard landing, an attempted go-around, and a subsequent nose-over.
+   5. CEN23LA421  The student pilot’s improper landing flare, which resulted in a hard, bounced landing, and the nose landing gear collapse.
+   6. ERA23LA140  The pilot’s failure to maintain an appropriate pitch attitude and descent rate during landing, which resulted in a hard landing. Contributing to the accident was the flight instructor’s inadequate remedial action.
+   7. GAA19CA042  The student pilot's improper landing flare, which resulted in a hard, bounced landing.
+   8. WPR23LA327  The pilot’s improper landing flare following an unstable approach, which resulted in a hard landing.
+   9. GAA19CA558  The pilot's improper landing flare, which resulted in a hard, porpoised landing.
+  10. WPR23LA291  The pilot’s loss of directional control during landing, which resulted in a ground loop.
+  11. ERA19TA278  The pilot's loss of control when the airplane encountered a downdraft during landing approach, which resulted in a subsequent hard landing and gear collapse.
+  12. ERA23LA015  The pilot’s improper landing flare which resulted in a hard, bounced landing that damaged the nose landing gear, resulting in an inability to maintain directional control and subsequent runway excursion.
+  13. WPR19TA142  The noncertificated pilot's failure to maintain control following a bounced landing and his decision to fly the airplane without proper training.
+  14. GAA19CA036  The student pilot’s improper landing flare, which resulted in a hard landing.
+  15. GAA16CA523  The pilot's improper landing flare, which resulted in a hard, bounced landing.
+  16. GAA17CA029  The student pilot's improper landing flare in crosswind conditions, which resulted in a porpoised hard landing and a runway excursion.
+  17. CEN18LA250  The separation of the left main landing gear spring during landing due to a preexisting fatigue crack.
+  18. GAA18CA396  The pilot’s improper landing flare, which resulted in a hard landing.
+  19. ERA24LA035  The pilot's failure to maintain adequate airspeed during the approach, which resulted in a hard landing.
+  20. GAA16CA455  The pilot's exceedance of the critical angle of attack during the landing flare, which resulted in an aerodynamic stall and a hard landing.
+  21. CEN17LA324  The pilot's improper landing flare, which resulted in a hard landing and the overstress failure of the right main landing gear.
+  22. GAA18CA449  The pilot's unstabilized approach during the initial landing with a right quartering tailwind, which resulted in a hard landing and subsequent go-around and the collapse of the nose landing gear during the subsequent landing.
+
+### QUERY: lost control maneuvering at low altitude
+   0. CEN16FA172  The pilot's failure to promptly feather the left propeller upon the initial loss of engine power shortly after takeoff and his failure to maintain airspeed while maneuvering with one engine inoperative, which resulted in a loss of control a
+   1. CEN16FA372  The pilot's excessive cyclic input during a missed approach maneuver in night instrument meteorological conditions, which resulted in a loss of control and spiraling descent into terrain.
+   2. WPR17LA068  The pilot’s failure to compensate for a loss of effective translational lift while turning from an upwind to a downwind condition at a low altitude and low airspeed, which resulted in a loss of helicopter control.
+   3. ERA23FA266  The pilot’s failure to maintain control of the airplane while initiating a low-altitude aerobatic maneuver, which resulted in impact with trees and terrain. Contributing to the accident was the pilot’s high-risk behavior.
+   4. CEN16FA188  The pilot's severe impairment from the combined effects of high levels of ingested alcohol as well as three impairing medications (zolpidem, lorazepam, and diphenhydramine), which resulted in his decision to attempt an aerobatic maneuver th
+   5. ERA17FA135  The pilot's failure to maintain adequate airspeed while manually flying the airplane, which resulted in the airplane exceeding its critical angle of attack and experiencing an aerodynamic stall. Contributing to the accident was the pilot's 
+   6. CEN18FA001  The pilot's failure to maintain control of the helicopter, which resulted in a loss of tail rotor effectiveness, and his failure to promptly initiate the proper recovery technique, which resulted in a descent that could not be arrested befo
+   7. CEN18FA035  The pilot's failure to maintain clearance from powerlines while maneuvering at low altitude.
+   8. WPR20FA034  The pilot’s failure to maintain clearance from terrain during cruise flight in dark night conditions.
+   9. CEN19FA095  The pilot's loss of control during cruise flight as a result of spatial disorientation while operating the helicopter in close proximity to terrain in marginal meteorological conditions.
+  10. ERA19FA163  The noninstrument-rated pilot's continued visual flight into instrument meteorological conditions, which resulted in an inadvertent descent into the water. Contributing to the accident was the pilot's decision to conduct the flight at a low
+  11. ERA23LA320  A total loss of power in the right engine due to the right ECU injector wires being severed by the main landing gear actuator piston teeter bar as a result of a lack of clearance and protection of the wiring bundle.
+  12. ERA17CA030  The noncertificated pilot’s loss of airplane control while maneuvering at a low altitude.
+  13. CEN16FA209  The pilot's failure to maintain adequate airspeed and his exceedance of the airplane's critical angle-of-attack during a steep turn at a low altitude, which resulted in an aerodynamic stall/spin at too low of an altitude to recover.
+  14. CEN17FA080  The pilot's improper decision to perform a steep turn at low altitude, which resulted in exceedance of the airplane's critical angle of attack and an aerodynamic stall.
+  15. WPR17FA101  The pilot's failure to maintain clearance from terrain while maneuvering at a low altitude. Contributing to the accident was the pilot's mistaken entry into a canyon surrounded by steep rising terrain while at a low altitude for reasons tha
+  16. ERA22LA274  The pilot’s failure to maintain altitude while maneuvering the airplane at a low altitude, which resulted in impact with trees and terrain.
+  17. ERA23LA334  The pilot’s failure to maintain clearance from powerlines while maneuvering at a low altitude over water, which resulted in a collision and loss of control.
+  18. CEN17FA050  The pilot exceeded the airplane's critical angle of attack while maneuvering at low altitude, which resulted in an inadvertent aerodynamic stall and subsequent impact with terrain.
+  19. WPR18FA016  The pilot's failure to maintain adequate clearance from the water while maneuvering at low altitude.
+  20. WPR19FA163  A loss of control while conducting low-altitude, high-speed maneuvers.
+  21. CEN18LA303  The pilot's improper decision to conduct a low-altitude flight over a river and his inadequate monitoring of the environment, which resulted in a collision with a cableway.
+  22. GAA19CA509  The pilot's failure to maintain adequate clearance from a tree while maneuvering at a low altitude.
+
+### QUERY: carburetor icing
+   0. ERA16LA270  The partial loss of engine power due to carburetor icing.
+   1. ANC16CA056  A partial loss of engine power due to carburetor icing, which resulted from the pilot’s failure to use carburetor heat.
+   2. ERA22LA157  A complete loss of engine power as a result of carburetor ice due to the flight instructor’s failure to effectively use carburetor heat in conditions conducive to the formation of carburetor ice.
+   3. CEN23LA266  A loss of engine power due to the formation of carburetor ice that resulted from the pilot’s delayed use of carburetor heat during the landing approach.
+   4. ERA18LA162  The partial loss of engine power due to carburetor icing.
+   5. ERA19LA151  A total loss of engine power due to carburetor icing. Contributing was the pilot’s failure to leave the carburetor heat on fully after his initial application of carburetor heat.
+   6. WPR23LA156  The pilot’s failure to use carburetor heat during an extended ground delay before takeoff, which resulted in a total loss of engine power during initial climb due to carburetor ice.
+   7. CEN19FA191  A loss of engine power due to carburetor icing, and the pilot’s subsequent exceedance of the airplane’s critical angle of attack, which resulted in an aerodynamic stall and impact with terrain.
+   8. CEN18LA370  The delayed application of carburetor heat by the pilot which led to accumulation of carburetor ice, eventual loss of engine power, and the subsequent forced landing in high vegetation.
+   9. GAA17CA306  A partial loss of engine power due to the formation of carburetor icing, which resulted from the student pilot’s failure to apply carburetor heat and the flight instructor’s delayed response in applying carburetor heat while operating in co
+  10. CEN23LA233  A total loss of engine power as a result of carburetor ice that formed while the engine was operating at a low power setting for an extended period of time before departure.
+  11. CEN17LA149  The total loss of engine power for reasons that could not be determined based on the available evidence.
+  12. CEN23LA087  The loss of engine power due to carburetor icing.
+  13. ANC20LA002  The pilot's delayed application of carburetor heat in weather conditions conducive to carburetor icing, which resulted in a partial loss of engine power, a precautionary landing, and impact with terrain.
+  14. CEN23LA068  The partial loss of engine power due to carburetor icing and the flight instructor’s failure to use carburetor heat in weather conditions conducive to serious carburetor icing.
+  15. ERA17LA341  The flight instructor’s failure to use carburetor heat, which resulted in the total loss of engine power due to carburetor icing.
+  16. ERA23LA221  The pilot’s failure to apply carburetor heat before initiating a descent in conditions conducive to the development of carburetor icing, which resulted in a partial loss of engine power due to carburetor ice.
+  17. ERA22FA226  A total loss of engine power due to carburetor ice as a result of the pilot’s failure to effectively use carburetor heat in conditions conducive to the formation of carburetor ice.
+  18. ERA18TA255  The pilot's failure to use carburetor heat in conditions conducive to serious carburetor icing at glide power, which resulted in a partial loss of power and an aerodynamic stall.
+  19. ERA19TA051  The pilot's delay in applying carburetor heat, which resulted in a total loss of engine power during descent due to carburetor icing.
+  20. GAA18CA038  The pilot’s failure to apply carburetor heat in conditions conducive to carburetor icing, which resulted in a partial loss of engine power during landing.
+  21. ERA17FA001  The loss of engine power due to carburetor icing. Contributing to the accident was the pilot's use of automobile gasoline, which increased the likelihood of carburetor icing.
+  22. ERA19LA021  The pilot’s failure to utilize carburetor heat in conditions conducive to the formation of carburetor icing, which resulted in a total loss of engine power.
+
+### QUERY: fuel contamination
+   0. CEN22LA228  A partial loss of engine power due to fuel contamination from foreign object debris. Contributing to the accident was the operator’s failure to follow the manufacturer’s required airframe fuel filter inspection interval.
+   1. CEN22LA128  A total loss of engine power due to fuel injection system contamination from an unknown source.
+   2. CEN18LA181  A partial loss of engine power shortly after takeoff due to water contamination of the fuel system.
+   3. CEN19LA309  The partial loss of engine power due to fuel contamination.
+   4. ERA17LA234  A total loss of engine power due to fuel contamination with water and the pilot's inadequate preflight inspection that detected, but did not fully resolve, the water contamination of the fuel system.
+   5. ANC19FA021  The pilot's failure to maintain control after the partial loss of engine power. Contributing to the accident was a contamination of the fuel system, which likely seized the electric fuel pump and restricted fuel flow to the engine.
+   6. CEN23LA147  The total loss of engine power due to fuel contamination.
+   7. CEN17LA073  A partial loss of engine power due to fuel contamination from an undetermined source.
+   8. CEN19LA129  The pilot’s inadequate preflight inspection, during which he failed to detect the water contamination in the left fuel, which resulted in a partial loss of power in the left engine. Contributing to the accident was the total loss of power i
+   9. CEN23LA025  The mechanic’s failure to inspect and clean the entire fuel nozzle assembly in accordance with the engine maintenance manual, which resulted in fuel starvation and a partial loss of engine power, an autorotation, and a hard landing.
+  10. WPR16FA176  Total loss of power to the right engine during takeoff due to a fuel contaminant, which blocked the fuel flow transducer and resulted in fuel starvation to the engine.
+  11. CEN18LA113  A total loss of engine power due to water contamination of the fuel system. Contributing to the accident was the pilot/owner's inadequate maintenance of the fuel caps.
+  12. CEN19LA311  A total loss of engine power due to water contamination of the fuel, and the pilot's failure to conduct a preflight inspection.
+  13. WPR23LA263  A total loss of engine power due to fuel contamination from an unknown source.
+  14. CEN19LA252  The flight instructor's and student pilot's inadequate preflight inspection of the fuel system for water contamination, which resulted in a loss of engine power during takeoff and subsequent forced landing.
+  15. CEN19LA244  The improper fuel servicing of the airplane, which resulted in water contamination of the airplane's fuel supply and a subsequent loss of engine power.
+  16. ERA19IA178  The lineman's inadvertent introduction of diesel exhaust fluid (DEF) to the fuel truck fuel system icing inhibitor reservoir, which resulted in fuel contamination and a total loss of engine power. Contributing to the accident was the fixed-
+  17. ERA19LA224  Water contamination of the fuel system, which resulted in a total loss of engine power. Contributing to the accident was the pilot's inadequate preflight inspection, which failed to remove all the water from the airplane's fuel system.
+
+### QUERY: density altitude
+   0. CEN22FA197  The pilot’s failure to maintain control of the airplane for reasons that could not be determined.
+   1. ERA16FA257  The pilot's inadequate preflight weight and balance and performance planning, which resulted in the airplane being over gross weight. Also causal were the pilot's decision not to use the entire runway for takeoff, his premature liftoff, and
+   2. WPR17FA171  The pilot's exceedance of the airplane's critical angle of attack during takeoff in high density altitude conditions, which resulted in an aerodynamic stall, loss of control, and subsequent impact with terrain.
+   3. GAA16CA320  The pilot's decision to takeoff over the maximum takeoff weight in high density altitude conditions, which resulted in an inability to climb above terrain, a forced landing, and a collision with a road sign. Contributing to the accident was
+   4. GAA17CA318  The pilot’s inadequate preflight planning that did not account for high-density altitude conditions and his subsequent attempted go-around in conditions that prevented the airplane from attaining a positive climb rate and resulted in its su
+   5. ERA18LA211  The pilots' decision to take off from a wet, upsloping turf runway with a quartering tailwind and elevated density altitude conditions, which degraded takeoff and climb performance and resulted in the glider flight instructor's decision to 
+   6. CEN16LA228  The pilots’ failure to maintain adequate control of the airplane during the initial climb after takeoff, which resulted in the airplane exceeding its critical angle of attack and an aerodynamic stall at a low altitude. Contributing to the a
+   7. WPR18LA262  The pilot's inadequate preflight planning before takeoff in the high density altitude conditions, which resulted in the airplane being unable to maintain sufficient airspeed to continue to climb.
+   8. WPR19LA223  The airplane’s inability to maintain altitude during the initial climb due to a degradation in the airplane’s performance as a result of high-density altitude conditions at the time of takeoff. Contributing to the accident were the pilot’s 
+   9. WPR16FA169  The pilot's failure to maintain clearance from the runway during a low-level aerobatic maneuver. Contributing to the accident was a high density altitude and the pilot's failure to plan/adequately compensate for high density altitude condit
+  10. GAA16CA403  The student pilot's failure to retract the flaps during a go-around in high density altitude conditions, resulting in the airplane's inability to climb and a subsequent collision with terrain and nose over.
+  11. CEN23LA397  The pilot’s failure to establish a proper airspeed before becoming airborne, which resulted in an inability to climb out of ground effect and subsequent hard landing. Contributing to the accident was high-density altitude.
+  12. ERA16LA224  The pilot's failure to maintain adequate airspeed while departing in a heavily loaded airplane at high density altitude, which resulted in the airplane exceeding its critical angle of attack and experiencing an aerodynamic stall, landing ha
+  13. WPR17FA166  A loss of control during takeoff for reasons that could not be determined.
+  14. WPR17FA149  The flight instructor's decision to conduct a low-altitude flight into a box canyon in high density altitude conditions and his failure to maintain airspeed while maneuvering to escape the canyon, which resulted in an exceedance of the airp
+  15. WPR17FA118  The flight instructor's decision to continue the takeoff in gusting tailwind and high density altitude conditions, which significantly reduced airplane performance, and his subsequent exceedance of the airplane's critical angle of attack du
+  16. ERA16CA237  The pilot's inadequate preflight planning, which resulted in his attempt to take off near the airplane’s maximum gross weight in high-density altitude conditions that degraded the airplane’s takeoff and climb performance and resulted in an 
+  17. ERA17LA312  The pilot's loss of airplane control during takeoff.
+
+### QUERY: wake turbulence encounter
+   0. CEN19LA266  The unexpected wake turbulence encounter while climbing in smooth air to cruise, resulting in passenger injuries. Contributing to the accident was the passenger seat belt sign was off.
+   1. DCA23LA096  The flight crew’s decision to fly over an observed storm cell instead of deviating around it despite sufficient meteorological information indicating the potential for severe convective activity.
+   2. DCA23LA411  An encounter with clear air turbulence.
+   3. ERA17FA222  The noninstrument-rated pilot's continued visual flight rules flight into adverse weather conditions, which resulted in an encounter with severe convective activity, spatial disorientation, a loss of airplane control, and a subsequent in-fl
+   4. WPR18FA200  The airplane's encounter with wake turbulence from the lead airplane in the formation flight, which resulted in a compressor stall and the airplane's subsequent inability to climb.
+   5. DCA19CA034  The airplane’s encounter with severe turbulence.
+   6. DCA20CA038  an encounter with convectively induced turbulence while overflying an area of known convective activity.
+   7. DCA19CA151  an encounter with convectively induced turbulence while penetrating cumulus clouds during descent.
+   8. DCA17LA183  An encounter with convective turbulence while maneuvering to avoid conflicting traffic.
+   9. DCA16CA182  An encounter with wake turbulence that resulted in a flight attendant injury.
+  10. DCA16IA215  an inadvertent encounter with convective turbulence while in cruise flight.
+  11. WPR23LA146  The flight instructor’s failure to maintain clearance from a commercial airliner which resulted in an encounter with wake turbulence and subsequent loss of control resulting in impact with terrain.
+  12. ANC18LA072  The pilot's failure to avoid wake turbulence from a crossing heavy airplane.
+  13. ERA18LA002  The pilot's failure to maintain adequate distance from helicopters during the approach for landing, resulting in an encounter with wake turbulence and subsequent loss of control.
+  14. DCA18CA289  an inadvertent encounter with wake turbulence.
+  15. WPR23LA277  The pilot’s loss of directional control during landing after encountering wake turbulence.
+  16. WPR16FA086  The weight shift control aircraft encounter with a wake vortex from a preceding airplane, which resulted in a roll upset at an altitude too low for recovery. Contributing to the accident was the accident pilot's failure to recognize the pot
+  17. WPR16FA172  The pilot's selection of a landing runway which, given the wind and traffic conditions, was susceptible to high crosswinds and the translation of wake turbulence across its approach path, and the controller's and pilot's failure to ensure s
+  18. ERA23LA353  The pilot’s inadvertent encounter with helicopter wake turbulence during initial climb, which resulted in a loss of airplane control.
+  19. CEN18LA346  The student pilot's overshoot of the runway, which resulted from her misperception of an engine issue due to her failure to maintain proper pitch control during initial climb.
+
+### QUERY: tail rotor failure
+   0. ERA22LA340  Inadequate maintenance of the helicopter’s tail rotor blades, which resulted in a failure of the tail rotor drive system, and an inflight loss of yaw control from which the flight instructor was unable to recover.
+   1. CEN17LA375  The loss of tail rotor thrust due to a failed tail rotor driveshaft, which resulted in a loss of tail rotor control and a hard landing.
+   2. CEN22FA151  A loss of helicopter control while maneuvering, which resulted in main rotor blade contact with the tailboom in flight, tail boom separation, and an uncontrolled descent.
+   3. WPR18FA077  The pilot's failure to perform weight and balance calculations before departing on the flight, which resulted in his operation of the helicopter outside of its published weight and balance limitations and a subsequent loss of control shortl
+   4. WPR18LA221  The operator's improper installation of the tail rotor (TR) teeter bearings, which resulted in cascading in-flight failures of the TR components and attach hardware.
+   5. GAA19CA250  The flight instructor's improper decision to instruct the student pilot to establish a hover and reposition the helicopter with a tailwind, which resulted in the student pilot's loss of pitch control.
+   6. CEN18LA247  The loss of tail rotor control due to the in-flight failure of the tail rotor pinion.
+   7. WPR16LA056  The loss of helicopter control as a result of the loss of tail rotor effectiveness.
+   8. ERA18LA192  The pilot's inability to maintain yaw control while transitioning to an out of ground effect hover due to a loss of tail rotor effectiveness.
+   9. CEN23LA199  The pilot’s failure to maintain proper helicopter control during autorotation that resulted in an abnormal ground contact which caused the subsequent main rotor strike on the tail boom that severed the tail rotor driveshaft. Contributing to
+  10. ERA17LA163  A partial failure of the helicopter's engine tachometer due to the separation of one of the magnet assemblies and engine roughness, which precipitated the pilot’s initiation of an off-airport autorotation, during which he applied improper a
+  11. CEN18FA074  A loss of engine power due to snow or ice ingestion at an altitude that was insufficient to allow for engine re-ignition. Contributing to the accident were conditions, including altitude and flat light conditions, that precluded a successfu
+  12. GAA16CA201  The pilot's failure to maintain control of the helicopter yaw while operating in conditions conducive to loss of tail rotor effectiveness, resulting in an uncommanded rapid right yaw and ground impact.
+  13. GAA17CA495  The pilot’s failure to maintain helicopter control during landing due to a loss of tail rotor effectiveness.
+  14. WPR18LA147  A loss of tail rotor thrust due to the improper installation of the tail rotor assembly by maintenance personnel resulted in the pilot’s inability to maintain control of the helicopter as he began transition into forward flight from a hover
+  15. CEN18LA313  The in-flight separation of the tail rotor blade due to fatigue, which resulted in the subsequent emergency landing and dynamic rollover.
+  16. WPR18FA074  A loss of control following the gunner's failure to ensure that the net maintained clearance from the tail rotor.
+  17. WPR19LA194  The pilot’s failure to account for environmental conditions conducive to a loss of tail rotor effectiveness, which resulted in a loss of tail rotor effectiveness and subsequent loss of control. Contributing to the accident was the pilot’s i
+  18. WPR19LA205  The left seat pilot’s failure to account for environmental conditions conducive to a loss of tail rotor effectiveness, which resulted in a loss of tail rotor effectiveness and subsequent loss of control.
+
+### QUERY: magneto failure
+   0. ERA17LA340  A failure of both magnetos due to multiple deficiencies, which resulted in a total loss of engine power.
+   1. CEN18LA010  The loss of engine power during a precautionary approach for landing for reasons that could not be determined based on the available information.
+   2. CEN17LA015  A total loss of engine power for reasons that could not be determined based on the available information.
+   3. WPR22LA099  The loss of engine power for undetermined reasons, which resulted in an off-airport landing on unimproved terrain.
+   4. CEN19LA326  A partial loss of engine power due to a faulty magneto/ignition system, which resulting in a forced landing.
+   5. ERA16LA331  A total loss of engine power due to the improper torqueing of the magneto, which led it to its malfunctioning in flight.
+   6. ERA19LA006  Maintenance personnel’s improper maintenance of the magnetos, which resulted in a loss of engine power.
+   7. ERA19FA161  The pilot’s continued visual flight rules flight into instrument meteorological conditions, resulting in controlled flight into trees and terrain.
+   8. WPR23FA225  Maintenance personnel's failure to properly torque and inspect the magneto hardware, which resulted in a partial loss of engine power.
+   9. WPR18LA148  The partial loss of engine power during a go-around due to the loose copper electrode finger inside the left magneto.
+  10. ERA16LA094  A rough running engine as a result of an intermittent failure of the left magneto for reasons that could not be determined, which resulted in a subsequent autorotation, impact with a sign, and rollover.
+  11. CEN18LA377  The total loss of engine power for reasons that could not be determined based on the available evidence.
+  12. CEN22LA344  Maintenance personnel’s inadequate maintenance of the magneto, which resulted in a loss of engine ignition, a loss of engine power, and a subsequent forced landing.
+  13. ERA19LA245  Inadequate maintenance of the helicopter’s magnetos, which resulted in a partial loss of engine power during the initial climb due to a failure of the left magneto and malfunction of the right magneto.
+  14. CEN17LA099  The partial loss of engine power due to the failure of the magneto's internal timing during low-altitude maneuvering.
+  15. CEN23LA107  A total loss of engine power due to detonation and preignition in the No. 6 cylinder.
+  16. ERA23LA097  The pilot’s failure to detect water in the fuel during the preflight inspection, which resulted in a loss of engine power.
+  17. ERA17LA163  A partial failure of the helicopter's engine tachometer due to the separation of one of the magnet assemblies and engine roughness, which precipitated the pilot’s initiation of an off-airport autorotation, during which he applied improper a
+
+### QUERY: engine fire after takeoff
+   0. ERA22FA126  Inadequate maintenance, which led to a partial loss of both right and left engine power during takeoff, and the pilot’s subsequent failure to maintain airspeed while maneuvering with one engine at low altitude. Contributing to the accident 
+   1. ERA18LA181  The failure of the No. 3 cylinder exhaust valve, which resulted in the total loss of engine power during takeoff.
+   2. DCA18LA163  The flight crew’s delayed landing after an in-flight engine fire, which reignited after both fire bottles were discharged and resulted in substantial damage to an engine pylon. Contributing to the delayed landing was likely the flight crew’
+   3. CEN18LA285  The loss of right engine power due to fuel starvation, which resulted from corrosion debris in the fuel lines. Contributing to the accident was the mechanic’s and pilot’s inadequate maintenance of the airplane before the flight.
+   4. WPR16LA184  The failure of an induction elbow following an engine backfire, which resulted in an in-flight fire and loss of engine power.
+   5. CEN17LA228  A total loss of engine power due to the engine’s unresolved high operating temperatures, which resulted in failure of the distributor rotor and drive shaft, and the pilot’s failure to maintain airspeed during the subsequent forced landing, 
+   6. WPR19TA186  A fuel leak caused by age-degraded fuel hoses, which resulted in a total loss of engine power and fire before takeoff. Contributing to the accident was inadequate maintenance.
+   7. WPR17LA187  A loss of engine power for reasons that could not be determined based on the available information.
+   8. WPR19LA259  Excessive fuel pressure and temperature throughout the fuel system due to heat soaking, which resulted in an engine fire during engine start.
+   9. WPR22LA219  An in-flight fire during the initial takeoff climb for reasons that could not be determined based on the available evidence.
+  10. ERA19LA151  A total loss of engine power due to carburetor icing. Contributing was the pilot’s failure to leave the carburetor heat on fully after his initial application of carburetor heat.
+  11. ERA17MA316  A failure of the rear bearing in the No. 2 engine, which (1) created multiple and likely unexpected and confusing cockpit indications, resulting in the pilot's improper diagnosis and subsequent erroneous shutdown of the No. 1 engine, and (2
+  12. WPR18LA037  The inadequate cooling time between repeated heavy braking applications, which resulted in the brakes overheating and a subsequent brake fire during the aborted takeoff sequence.
+  13. CEN23FA038  A loss of power on the left engine due to fuel starvation and the subsequent loss of power on the right engine for undetermined reasons.
+  14. CEN22LA438  The inflight fire for reasons that could not be determined.
+  15. CEN16IA091  The flight crew's inadequate preflight inspection of the airplane, during which they failed to see a fueling mat that had been placed on the inboard trailing edge of the right wing, which the right engine subsequently ingested during the ta
+  16. GAA20CA042  The pilot's failure to move the fuel selector position to the 'on' position before takeoff, which resulted in a total loss of engine power and necessitated a forced landing to a field shortly after takeoff, and his subsequent improper decis
+  17. ERA20LA044  The separation of the throttle control cable from the carburetor throttle control lever resulting in the near total loss of engine power. Contributing to the separation of the throttle cable was the lack of proper securing hardware by unkno
+  18. ANC19LA008  A total loss of engine power for reasons that could not be determined based on the available evidence.
+  19. CEN19MA190  The pilot’s failure to maintain airplane control following a reduction of thrust in the left engine during takeoff. The reason for the reduction in thrust could not be determined. Contributing to the accident was the pilot’s failure to cond
+  20. CEN16FA094  The student pilot's loss of control after exceeding the airplane's critical angle-of-attack, which lead to a power-on, aerodynamic departure stall. Contributing to the accident was the flight instructor's inadequate oversight of the student
+  21. CEN17LA190  The partial loss of engine power during takeoff for reasons that could not be determined based on the available information.
+  22. WPR18LA207  An in-flight fuel-fed fire from an unknown source for reasons that could not be determined due to the extensive fire damage to the airplane.
+
+### QUERY: landing gear collapse on landing
+   0. CEN22LA392  The collapse of the landing gear during landing for undetermined reasons.
+   1. ERA19LA169  The failure of the right main landing gear due to a fatigue cracking.
+   2. WPR22LA357  Failure of the landing gear due to material deficiencies that reduced the strength of the landing gear.
+   3. WPR23LA154  The pilot’s failure to properly flare the airplane, which resulted in a hard landing. Contributing to the accident was the pilot’s decision to fly a nonstandard traffic pattern, which resulted in an unstable approach.
+   4. ERA23LA154  A main landing gear collapse due to a landing gear actuator overtravel for reasons that could not be determined.
+   5. WPR18LA272  A recent hard landing resulted in a fracture of a joint from a cylinder to a main landing gear.
+   6. ERA18LA171  The collapse of all three landing gear for reasons that could not be determined because postaccident examination of the landing gear system revealed no evidence of any mechanical malfunctions or failures that would have precluded normal ope
+   7. ERA19LA123  A landing gear collapse due to the separation of the actuator pinion bearing support from the actuator, which resulted in the failure of the actuator shaft.
+   8. WPR18LA129  The failure of the left main landing gear upper arm forging due to fatigue cracking and subsequent overstress, which resulted in the collapse of the landing gear during the landing roll.
+   9. ERA19LA125  Maintenance personnel’s improper rigging of the main landing gear actuators, which resulted in the collapse of the right main landing gear.
+  10. WPR17LA210  Partial retraction of the main landing gear during the landing roll for reasons that could not be determined because postaccident examination and functional testing of the gear revealed no anomalies.
+  11. CEN17LA022  Landing gear collapse upon landing due to a hydraulic leak that led to insufficient pressure to fully extend and lock the gear in a down position.
+  12. ERA19TA067  The pilot’s inadvertent retraction of the landing gear during landing rollout, resulting in a landing gear collapse.
+  13. ERA18LA154  A nose landing gear collapse for reasons that could not be determined based on the available information.
+  14. ANC17LA014  The failure of the nose landing gear to extend and lock due to the failure of the alternator and reduced battery power due to the cold ambient temperature, which prohibited the electrically-driven hydraulic pump from supplying adequate hydr
+  15. CEN17LA340  A collapse of the right main landing gear due to a bent pushrod, which precluded the gear from fully extending. The reason for the bent pushrod could not be determined based on the available information.
+  16. CEN18LA017  The pilot’s improper landing flare, which led to a hard landing and the subsequent collapse of the nosewheel landing gear due to the overstress failure of the nosewheel landing gear trunnion casting.
+  17. CEN18LA128  The landing gear collapse due to the separation of the end fitting bolt for reasons that could not be determined based on the available evidence.
+  18. CEN16LA354  Maintenance personnel’s failure to properly rig the right main landing gear locking mechanism, which resulted in a gear collapse during landing.
+  19. ERA18LA201  A collapse of the right main landing gear for reasons that could not be determined based on the available information.
+  20. ERA17LA033  A collapse of the main landing gear for reasons that could not be determined based on the available evidence.
+  21. ERA18LA220  Inadequate maintenance inspection of the airplane's nose landing gear, which resulted in a nose landing gear collapse during landing due to cracking and corrosion.
+  22. CEN16LA187  A collapse of the right main landing gear for reasons that could not be determined because of the damage to the landing gear system.
+
+### QUERY: midair collision
+   0. ANC23LA071  The failure of both pilots to see and avoid while en route, which resulted in a midair collision.
+   1. WPR18LA267  The pilot of the race 13 airplane's failure to maintain clearance from the race 37 airplane during the closed course air race.
+   2. CEN18LA298  The Extra pilot’s failure to see and avoid the Cessna, which resulted in an in-flight collision. Contributing to the accident was the failure of the Extra pilot to tune his radio to the correct frequency, which resulted in no common traffic
+   3. ERA20LA034  The failure of the Cessna 172N pilot to see and avoid a second airplane while maneuvering in the traffic pattern, which resulted in a midair collision. Contributing to the accident was the failure of the Cessna 172N pilot to tune his radio 
+   4. WPR16LA146  The failure of both pilots to see and avoid each other during cruise flight, which resulted in a midair collision.
+   5. WPR22FA100  The pilot’s improper aerobatic maneuver leading to an airspeed that exceeded the airplane’s design limits, which resulted in rudder flutter and an in-flight breakup.
+   6. ANC18FA028  The pilot's failure to maintain adequate airspeed while departing in instrument meteorological conditions, moderate turbulence, and low-level wind shear, which resulted in the airplane exceeding its critical angle of attack and a subsequent
+   7. ERA17FA143  The Cessna pilot's failure to maintain clearance from the Grumman during the transition to a different formation. Contributing to the accident was the stepped down configuration of the formation flight which was composed of dissimilar aircr
+   8. WPR16FA065  The failure of the pilots of both airplanes to see and avoid each other as they converged nearly head-on, which resulted in a midair collision. Contributing to the accident was the effect of sun glare on the other pilot.
+   9. WPR16FA148  The failure of both pilots to maintain an adequate visual lookout, which resulted in a midair collision. Also causal was the pilot's use of two sedating antihistamines and two impairing medication and the effect of sun glare on his visual l
+  10. CEN18FA262  The pilot's exceedance of the glider's critical angle of attack during a low-altitude turn, which resulted in an aerodynamic stall and subsequent impact with terrain.
+  11. ANC18FA024  The pilot's failure to maintain clearance from terrain during a visual approach in dark night visual meteorological conditions, which resulted in controlled flight into terrain.
+  12. ANC16FA061  The failure of both pilots to see and avoid each other while in level cruise flight, which resulted in a midair collision.
+  13. WPR19FA145  The failure of both pilots to see and avoid the other airplane, which resulted in a midair collision.
+  14. ANC16FA052  The failure of both pilots to see and avoid each other while landing at a non-tower-controlled airport, which resulted in a midair collision. Contributing to the accident was the absence of radio calls from the Cessna during the traffic pat
+  15. CEN22FA424  The pilots’ inability to see and avoid each other, resulting in a midair collision.
+  16. WPR18LA071  The noncertificated pilots’ failure to maintain an adequate visual lookout, which resulted in a midair collision.
+  17. ANC18FA045  The failure of both pilots to see and avoid the other airplane while in level cruise flight, which resulted in a midair collision.
+  18. CEN23FA333  The failure of the gyroplane pilot to see and avoid the helicopter while maneuvering in the traffic pattern. Contributing to the accident was the gyroplane pilot’s performance of a prohibited maneuver in the traffic pattern.
+
+### QUERY: stall spin during base to final turn
+   0. WPR19FA007  The pilot's exceedance of the airplane's critical angle of attack while maneuvering for landing, which resulted in an aerodynamic stall/spin and a subsequent loss of control.
+   1. WPR18FA210  The pilot's exceedance of the airplane's critical angle of attack while maneuvering for landing, which resulted in a cross-control aerodynamic stall, spin, and impact with terrain. Contributing to the accident was the flight instructor's de
+   2. ERA23FA046  The pilot's failure to maintain proper airspeed while maneuvering in the airport traffic pattern and his exceedance of the airplane’s critical angle of attack, which resulted in an aerodynamic stall at an altitude that was too low to recove
+   3. WPR22FA235  The pilot’s decision to execute a steep turn to final approach, which resulted in an exceedance of the airplane’s critical angle of attack and an accelerated stall. Contributing to the accident was the improper positioning on base leg and t
+   4. CEN22FA211  The pilot’s exceedance of the airplane’s critical angle of attack while maneuvering, which resulted in an aerodynamic stall/spin and loss of control.
+   5. ERA18FA128  The pilot's failure to maintain control of the glider for reasons that could not be determined based on the available evidence.
+   6. CEN17FA315  The pilot’s exceedance of the airplane’s critical angle of attack while maneuvering to land, which resulted in an accelerated stall and the pilot’s subsequent loss of control. Contributing to the accident was the gap in the pilot’s flight e
+   7. GAA18CA306  The pilot’s exceedance of the airplane’s critical angle of attack during a turn, which resulted in an aerodynamic stall/spin.
+   8. WPR22FA196  The pilot’s failure to maintain proper airspeed during a turn and his exceedance of the airplane’s critical angle of attack, which resulted in an accelerated stall. Contributing to the accident was the improper placement of the fuel selecto
+   9. CEN17FA005  The flight instructor's loss of control during an aerodynamic stall demonstration, which resulted in an inadvertent spin from which he was unable to recover. Contributing to the accident was the flight instructor's lack of familiarity with 
+  10. CEN17FA084  The pilot's uncoordinated flight control inputs and subsequent inadvertent cross-control aerodynamic stall in the airport traffic pattern that resulted in a loss of control and uncontrolled descent with insufficient altitude for recovery.
+  11. ERA17FA119  The pilots' decision to perform flight training maneuvers at low airspeed at an altitude that was insufficient for stall recovery. Contributing to the accident was the flight instructor's inappropriate use of non-standard stall recovery tec
+  12. ERA20FA009  The pilot's exceedance of the airplane’s critical angle of attack during the landing approach, which resulted in a loss of control and a subsequent aerodynamic stall/spin. Contributing to the accident was the pilot's decision to fly the air
+  13. WPR22FA215  The pilots’ failure to climb and complete a normal traffic pattern after making a low approach and their failure to extend the flaps for reasons that could not be determined, and the flight instructor’s failure to ensure adequate airspeed a
+  14. CEN16FA214  The pilots' failure to maintain adequate airspeed while executing a simulated engine failure and landing maneuver, which resulted in the wing's critical angle of attack being exceeded and a subsequent aerodynamic stall and loss of control.
+  15. WPR23LA018  The pilot's failure to maintain adequate separation during a formation flight, which resulted in an encounter with wake turbulence, an aerodynamic stall, and collision with terrain.
+  16. WPR18FA253  The pilot failed to maintain adequate speed while maneuvering at a low attitude during night and entered an aerodynamic stall and subsequent spin.
+  17. CEN22FA223  The pilots’ failure to maintain adequate airspeed while maneuvering, which resulted in an exceedance of the airplane’s critical angle of attack and an aerodynamic stall.
+  18. ERA17LA048  The pilot's failure to maintain adequate airspeed and his exceedance of the glider’s critical angle of attack while maneuvering at low altitude, which resulted in an aerodynamic stall/spin.
+
+### QUERY: controlled flight into terrain
+   0. WPR18FA188  The pilot's failure to maintain clearance above the surface of the ocean.
+   1. CEN18FA078  The pilot's failure to maintain adequate altitude above mountainous terrain during cruise flight in dark night conditions, which resulted in controlled flight into terrain.
+   2. WPR17FA215  The flight instructor's failure to completely and properly evaluate the student pilot's incorrectly- planned flight, and his failure to use all available resources to maintain situation awareness during the flight, which resulted in control
+   3. WPR17FA055  The pilot's controlled flight into mountainous terrain while attempting to operate under visual flight rules in instrument meteorological conditions (IMC).
+   4. WPR18FA139  The pilot's failure to maintain sufficient altitude above mountainous terrain while maneuvering during night conditions in an area prone to turbulence, which resulted in a collision with terrain. Contributing to the accident was the flight 
+   5. CEN19FA084  The pilot’s failure to maintain adequate altitude for undetermined reasons during a practice circling approach in dark night visual meteorological conditions, which resulted in a collision with power lines.
+   6. CEN17LA043  The pilot's failure to attain a positive climb rate during an attempted missed approach in night instrument meteorological conditions that were at/near approach minimums, which resulted in controlled flight into terrain.
+   7. ANC22LA025  The pilot’s improper decision to continue the visual-flight-rules flight into low visibility conditions, which resulted in controlled flight into terrain.
+   8. WPR17FA125  The pilot's continued visual flight rules flight into instrument meteorological conditions and mountain obscuration that resulted in controlled flight into trees and terrain.
+   9. ANC17FA039  The pilot's decision to continue visual flight into an area of instrument meteorological conditions, which resulted in a loss of visual reference and subsequent controlled flight into terrain. Contributing to the accident was (1) the inadeq
+  10. CEN18FA003  An inflight loss of control and collision with terrain for undetermined reasons after a thorough examination of the airplane's flight controls was unable to confirm control continuity. Contributing to the accident was the pilot's lack of ex
+  11. ANC23LA036  The pilot’s inadvertent descent below the published minimum descent altitude, while operating in flat light conditions, which resulted in controlled flight into terrain.
+  12. ANC18FA036  The student pilot's decision to depart and continue on a solo cross-country flight through mountainous terrain in marginal visual flight rules conditions, which resulted in controlled flight into terrain.
+  13. CEN17FA355  The pilot's distraction by a cell phone during a low-altitude flight, which resulted in controlled flight into terrain.
+  14. ERA19FA161  The pilot’s continued visual flight rules flight into instrument meteorological conditions, resulting in controlled flight into trees and terrain.
+  15. WPR18FA001  The noninstrument rated pilot's decision to depart on a cross-country flight with en route weather conditions forecasted to be less than visual meteorological conditions and then to continue flight into instrument meteorological conditions,

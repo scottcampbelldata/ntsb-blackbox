@@ -1,0 +1,6 @@
+gradio
+sentence-transformers
+rank-bm25
+pandas
+numpy
+matplotlib
