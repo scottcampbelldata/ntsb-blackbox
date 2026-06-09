@@ -19,7 +19,7 @@ import sqlite3
 
 import pandas as pd
 
-DB = "data/ntsb.db"
+from paths import DB_PATH, require_file
 
 # Curated manufacturer aliases: raw value (already uppercased) -> canonical name.
 # Only obvious, high-count cases are merged. Extend deliberately; do not guess.
@@ -79,10 +79,13 @@ ANALYSES = {
         "label": "Fatal vs non-fatal accidents",
         "sql": """
             SELECT
-              CASE WHEN fatal_injury_count > 0 THEN 'fatal' ELSE 'non-fatal' END AS outcome,
+              CASE
+                WHEN fatal_injury_count > 0 THEN 'fatal'
+                WHEN fatal_injury_count = 0 THEN 'non-fatal'
+                ELSE 'unknown'
+              END AS outcome,
               COUNT(*) AS accidents
             FROM accidents
-            WHERE fatal_injury_count IS NOT NULL
             GROUP BY outcome
             ORDER BY accidents DESC
         """,
@@ -143,7 +146,8 @@ def run_analysis(key, con=None):
     sql = ANALYSES[key]["sql"].strip()
     own = con is None
     if own:
-        con = sqlite3.connect(DB)
+        require_file(DB_PATH, "SQLite accident database")
+        con = sqlite3.connect(DB_PATH)
     try:
         df = pd.read_sql_query(sql, con)
     finally:
@@ -153,7 +157,8 @@ def run_analysis(key, con=None):
 
 
 if __name__ == "__main__":
-    con = sqlite3.connect(DB)
+    require_file(DB_PATH, "SQLite accident database")
+    con = sqlite3.connect(DB_PATH)
     for key, label in list_analyses():
         sql, df = run_analysis(key, con)
         print("\n" + "=" * 60)

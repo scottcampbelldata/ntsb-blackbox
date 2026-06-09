@@ -14,17 +14,13 @@
 # ---------------------------------------------------------------------------
 
 import json
-from pathlib import Path
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-DOCS = Path("data/docs")
-INDEX_DIR = Path("data/index")
-INDEX_DIR.mkdir(parents=True, exist_ok=True)
+from paths import DOCS_DIR as DOCS, INDEX_DIR, META_PATH, VECTORS_PATH
 
-VECTORS_PATH = INDEX_DIR / "vectors.npy"     # the embeddings, one row per chunk
-META_PATH = INDEX_DIR / "chunks.jsonl"       # what each row of vectors refers to
+INDEX_DIR.mkdir(parents=True, exist_ok=True)
 
 # The embedding model. Small, fast, good quality. Swappable later in one line
 # if we want something stronger. bge models want a short instruction prefix on
@@ -60,7 +56,17 @@ def build():
 
     chunk_texts = []
     chunk_meta = []
+    if not DOCS.exists():
+        raise FileNotFoundError(
+            f"Missing narrative directory: {DOCS}\n"
+            "Build it first with: python src/ingest.py"
+        )
     files = sorted(DOCS.glob("*.txt"))
+    if not files:
+        raise FileNotFoundError(
+            f"No narrative files found in {DOCS}\n"
+            "Build them first with: python src/ingest.py"
+        )
     print(f"Reading {len(files)} narratives...")
     for fp in files:
         ntsb_no = fp.stem                       # the filename is the accident id

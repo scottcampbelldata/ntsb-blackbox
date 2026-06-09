@@ -14,12 +14,11 @@
 
 import json
 import re
-from pathlib import Path
 
 import numpy as np
 from rank_bm25 import BM25Okapi
 
-META_PATH = Path("data/index/chunks.jsonl")
+from paths import META_PATH, require_file
 
 
 def tokenize(text):
@@ -31,6 +30,7 @@ def tokenize(text):
 
 
 def load_chunks():
+    require_file(META_PATH, "chunk metadata")
     chunk_meta = []
     with open(META_PATH, "r", encoding="utf-8") as f:
         for line in f:
@@ -49,7 +49,12 @@ def build_bm25(chunk_meta):
 
 
 def bm25_search(bm25, chunk_meta, query, k=5):
-    scores = bm25.get_scores(tokenize(query))
+    tokens = tokenize(query)
+    if not tokens:
+        return []
+    scores = bm25.get_scores(tokens)
+    if len(scores) == 0 or float(np.max(scores)) <= 0:
+        return []
     top = np.argsort(scores)[::-1][:k]
     return [(float(scores[i]), chunk_meta[i]["ntsb_no"], chunk_meta[i]["text"]) for i in top]
 

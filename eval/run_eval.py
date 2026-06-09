@@ -16,14 +16,15 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "src")
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from sentence_transformers import SentenceTransformer
 from search import load_index, search, MODEL_NAME
 from bm25_search import build_bm25, bm25_search
 from hybrid_search import hybrid_search
 
-QUESTIONS = Path("eval/questions.jsonl")
+QUESTIONS = ROOT / "eval" / "questions.jsonl"
 K = 5
 POOL = 60
 
@@ -58,6 +59,9 @@ if __name__ == "__main__":
 
     queries = [json.loads(l) for l in open(QUESTIONS, encoding="utf-8") if l.strip()]
     queries = [q for q in queries if q.get("relevant")]
+    if not queries:
+        print("No labeled queries with relevant accident ids found.")
+        sys.exit()
     print(f"Loaded {len(queries)} labeled queries.\n")
 
     model = SentenceTransformer(MODEL_NAME)

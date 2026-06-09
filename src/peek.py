@@ -1,6 +1,4 @@
-from pathlib import Path
-
-RAW = Path("data/raw/final_reports_2016-23_cons_2024-12-24.csv")
+from paths import RAW_PATH as RAW
 
 with open(RAW, "r", encoding="utf-8", errors="replace") as f:
     lines = [next(f) for _ in range(3)]
