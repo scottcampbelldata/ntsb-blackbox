@@ -7,7 +7,7 @@ a "black box," but this system is the opposite of one. Every statistic is shown 
 the exact SQL that produced it, and every report is cited to its official NTSB record,
 so nothing is hidden behind generated prose.
 
-**Live demo:** _(Hugging Face Space link to be added)_
+**Live demo:** https://huggingface.co/spaces/account-name/ntsb-blackbox
 
 ---
 
