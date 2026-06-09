@@ -20,13 +20,14 @@ import json
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "src")   # so we can import the engines that live in src/
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))   # so we can import the engines that live in src/
 
 from sentence_transformers import SentenceTransformer
 from search import load_index, search, MODEL_NAME
 from bm25_search import build_bm25, bm25_search
 
-QUESTIONS = Path("eval/questions.jsonl")
+QUESTIONS = ROOT / "eval" / "questions.jsonl"
 QUESTIONS.parent.mkdir(parents=True, exist_ok=True)
 POOL = 12   # how many candidate accidents from each engine to show for labeling
 

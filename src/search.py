@@ -15,14 +15,11 @@
 # ---------------------------------------------------------------------------
 
 import json
-from pathlib import Path
 
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
-INDEX_DIR = Path("data/index")
-VECTORS_PATH = INDEX_DIR / "vectors.npy"
-META_PATH = INDEX_DIR / "chunks.jsonl"
+from paths import META_PATH, VECTORS_PATH, require_file
 
 # These MUST match what build_index.py used. If the model or prefix differs,
 # your query vectors would not line up with the stored passage vectors and the
@@ -33,6 +30,8 @@ QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 
 def load_index():
     """Read the saved vectors and their metadata back into memory."""
+    require_file(VECTORS_PATH, "semantic vector index")
+    require_file(META_PATH, "chunk metadata")
     vectors = np.load(VECTORS_PATH)
     chunk_meta = []
     with open(META_PATH, "r", encoding="utf-8") as f:

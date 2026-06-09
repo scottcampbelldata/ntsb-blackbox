@@ -15,8 +15,10 @@
 
 import sqlite3
 import sys
+from pathlib import Path
 
-sys.path.insert(0, "src")
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "src"))
 
 import matplotlib
 matplotlib.use("Agg")
@@ -28,17 +30,26 @@ from sentence_transformers import SentenceTransformer
 from search import load_index, search as dense_search, MODEL_NAME
 from bm25_search import build_bm25, bm25_search
 from hybrid_search import hybrid_search
+from paths import DB_PATH, require_file
 from router import route
 from sql_tool import list_analyses, run_analysis
 
-DB = "data/ntsb.db"
 ORANGE = "#e8772e"
 
-print("Loading model and indexes (one-time startup)...")
-MODEL = SentenceTransformer(MODEL_NAME)
-VECTORS, CHUNK_META = load_index()
-BM25 = build_bm25(CHUNK_META)
-print("Ready.")
+try:
+    print("Loading model and indexes (one-time startup)...")
+    require_file(DB_PATH, "SQLite accident database")
+    MODEL = SentenceTransformer(MODEL_NAME)
+    VECTORS, CHUNK_META = load_index()
+    BM25 = build_bm25(CHUNK_META)
+    print("Ready.")
+except FileNotFoundError as exc:
+    raise RuntimeError(
+        "Black Box could not find its local data files.\n\n"
+        f"{exc}\n\n"
+        "The code repo intentionally does not commit data/. For local use, download "
+        "the source CSV into data/raw/, then run the two build commands above."
+    ) from exc
 
 
 def _dedup_to_accidents(results, k=5):
@@ -55,7 +66,7 @@ def _dedup_to_accidents(results, k=5):
 def _accident_meta(ntsb_nos):
     if not ntsb_nos:
         return {}
-    con = sqlite3.connect(DB)
+    con = sqlite3.connect(DB_PATH)
     placeholders = ",".join("?" * len(ntsb_nos))
     cols = ("ntsb_no, event_year, city, state, make, model, "
             "fatal_injury_count, serious_injury_count, probable_cause, report_url")
@@ -111,6 +122,9 @@ def do_search(query, retriever):
         raw = dense_search(MODEL, VECTORS, CHUNK_META, query, k=40)
 
     hits = _dedup_to_accidents(raw, k=5)
+    if not hits:
+        return badge, "No matching passages found. Try a more specific aviation term or switch retrievers."
+
     meta = _accident_meta([nid for _, nid, _ in hits])
 
     cards = []

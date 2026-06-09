@@ -17,14 +17,15 @@ import sqlite3
 import sys
 from pathlib import Path
 
-sys.path.insert(0, "src")
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from sentence_transformers import SentenceTransformer
 from search import load_index, search, MODEL_NAME
 from bm25_search import build_bm25, bm25_search
+from paths import DB_PATH, require_file
 
-DB = "data/ntsb.db"
-OUT = Path("eval/candidates.txt")
+OUT = ROOT / "eval" / "candidates.txt"
 PER_ENGINE = 12   # candidates pulled from each engine before pooling
 
 # A deliberately MIXED set: concept queries (wording differs from the reports,
@@ -76,7 +77,8 @@ if __name__ == "__main__":
     model = SentenceTransformer(MODEL_NAME)
     vectors, chunk_meta = load_index()
     bm25 = build_bm25(chunk_meta)
-    con = sqlite3.connect(DB)
+    require_file(DB_PATH, "SQLite accident database")
+    con = sqlite3.connect(DB_PATH)
 
     lines = []
     for query in QUERIES:
