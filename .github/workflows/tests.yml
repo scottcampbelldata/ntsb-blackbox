@@ -1,0 +1,19 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      # CPU-only torch first: the default PyPI wheel bundles CUDA (~2.5 GB)
+      # that sentence-transformers would otherwise pull in for nothing on CI
+      - run: pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -r requirements.txt pytest
+      # data/ is never committed; DB-dependent tests skip themselves
+      - run: pytest -q

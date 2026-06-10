@@ -31,14 +31,21 @@ MAKE_ALIASES = {
 }
 
 
-def _make_normalization_case():
+def _make_normalization_case(aliases=MAKE_ALIASES):
     """Build a CASE expression from MAKE_ALIASES so name variants collapse to
     one canonical make. Generated from the dict (single source of truth) and
     embedded in the query so the mapping is fully visible to anyone reading
     the SQL the demo shows."""
+    for raw, canon in aliases.items():
+        # the names are embedded in SQL string literals below; a quote would
+        # silently break every query built from this expression
+        if "'" in raw or "'" in canon:
+            raise ValueError(
+                f"alias may not contain a single quote: {raw!r} -> {canon!r}"
+            )
     whens = "\n".join(
         f"               WHEN '{raw}' THEN '{canon}'"
-        for raw, canon in MAKE_ALIASES.items()
+        for raw, canon in aliases.items()
     )
     return (
         "CASE UPPER(make)\n"
@@ -134,9 +141,31 @@ ANALYSES = {
 }
 
 
+_KEY_BY_LABEL = {v["label"]: k for k, v in ANALYSES.items()}
+
+
 def list_analyses():
     """Return [(key, human label), ...] for populating a dropdown."""
     return [(k, v["label"]) for k, v in ANALYSES.items()]
+
+
+def analysis_key(label):
+    """Map a display label back to its analysis key; None if unknown."""
+    return _KEY_BY_LABEL.get(label)
+
+
+def accident_count(con=None):
+    """Total rows in the accidents table, so the app's headline figure comes
+    from the data instead of a hardcoded constant."""
+    own = con is None
+    if own:
+        require_file(DB_PATH, "SQLite accident database")
+        con = sqlite3.connect(DB_PATH)
+    try:
+        return con.execute("SELECT COUNT(*) FROM accidents").fetchone()[0]
+    finally:
+        if own:
+            con.close()
 
 
 def run_analysis(key, con=None):

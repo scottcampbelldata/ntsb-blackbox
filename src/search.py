@@ -21,9 +21,10 @@ from sentence_transformers import SentenceTransformer
 
 from paths import META_PATH, VECTORS_PATH, require_file
 
-# These MUST match what build_index.py used. If the model or prefix differs,
-# your query vectors would not line up with the stored passage vectors and the
-# results would be garbage.
+# The single source of truth for the embedding setup. build_index.py imports
+# MODEL_NAME from here, so the stored passage vectors and the query vectors
+# can never drift apart (if they differed, results would be garbage). bge
+# models want a short instruction prefix on the QUERY only, not the passages.
 MODEL_NAME = "BAAI/bge-small-en-v1.5"
 QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 

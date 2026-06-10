@@ -1,0 +1,3 @@
+# Normalize all text files to LF, on Windows checkouts too. Stops git's
+# per-command LF/CRLF conversion warnings on this repo.
+* text=auto eol=lf

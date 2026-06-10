@@ -20,13 +20,10 @@ from sentence_transformers import SentenceTransformer
 
 from paths import DOCS_DIR as DOCS, INDEX_DIR, META_PATH, VECTORS_PATH
 
-INDEX_DIR.mkdir(parents=True, exist_ok=True)
-
-# The embedding model. Small, fast, good quality. Swappable later in one line
-# if we want something stronger. bge models want a short instruction prefix on
-# the QUERY (not on the stored passages) for retrieval, handled below.
-MODEL_NAME = "BAAI/bge-small-en-v1.5"
-QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
+# The model name and the demo search are imported from search.py, the single
+# source of truth. The stored passage vectors and the query vectors MUST come
+# from the same model, so there is deliberately no second definition here.
+from search import MODEL_NAME, search
 
 # A full report is too long to embed as one vector, so we cut each narrative
 # into overlapping windows of words. Overlap keeps a sentence from being split
@@ -37,6 +34,10 @@ CHUNK_OVERLAP = 40
 
 def chunk_text(text, size=CHUNK_WORDS, overlap=CHUNK_OVERLAP):
     """Split one narrative into overlapping word-windows."""
+    if overlap >= size:
+        # the window advances by (size - overlap) words; anything else would
+        # stop advancing and loop forever
+        raise ValueError(f"overlap ({overlap}) must be smaller than size ({size})")
     words = text.split()
     if not words:
         return []
@@ -52,6 +53,7 @@ def chunk_text(text, size=CHUNK_WORDS, overlap=CHUNK_OVERLAP):
 
 
 def build():
+    INDEX_DIR.mkdir(parents=True, exist_ok=True)
     model = SentenceTransformer(MODEL_NAME)
 
     chunk_texts = []
@@ -95,19 +97,6 @@ def build():
     print(f"\nSaved {vectors.shape[0]} vectors of dim {vectors.shape[1]} to {VECTORS_PATH}")
     print(f"Saved chunk metadata to {META_PATH}")
     return model, vectors, chunk_meta
-
-
-def search(model, vectors, chunk_meta, query, k=5):
-    """Embed the question, score it against every chunk, return the top k.
-    Because everything is normalized, similarity is just one matrix multiply."""
-    q = model.encode([QUERY_PREFIX + query], normalize_embeddings=True)[0]
-    scores = vectors @ q                       # cosine similarity for all chunks at once
-    top = np.argsort(scores)[::-1][:k]         # highest scores first
-    results = []
-    for idx in top:
-        m = chunk_meta[idx]
-        results.append((float(scores[idx]), m["ntsb_no"], m["text"]))
-    return results
 
 
 if __name__ == "__main__":

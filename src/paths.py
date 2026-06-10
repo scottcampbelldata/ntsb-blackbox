@@ -8,6 +8,7 @@ DOCS_DIR = DATA_DIR / "docs"
 INDEX_DIR = DATA_DIR / "index"
 VECTORS_PATH = INDEX_DIR / "vectors.npy"
 META_PATH = INDEX_DIR / "chunks.jsonl"
+BM25_CACHE_PATH = INDEX_DIR / "bm25.pkl"
 
 
 def require_file(path, purpose):

@@ -22,6 +22,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from sentence_transformers import SentenceTransformer
 from search import load_index, search, MODEL_NAME
 from bm25_search import build_bm25, bm25_search
+from dedup import dedup_accidents
 from hybrid_search import hybrid_search
 
 QUESTIONS = ROOT / "eval" / "questions.jsonl"
@@ -30,12 +31,9 @@ POOL = 60
 
 
 def dedup(results):
-    order, seen = [], set()
-    for _, nid, _ in results:
-        if nid not in seen:
-            seen.add(nid)
-            order.append(nid)
-    return order
+    """Chunk hits -> unique accident ids in rank order (ids only; the shared
+    dedup keeps full tuples)."""
+    return [nid for _, nid, _ in dedup_accidents(results)]
 
 
 def metrics(ranked, relevant, k=K):

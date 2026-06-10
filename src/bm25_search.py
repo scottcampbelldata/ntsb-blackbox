@@ -13,7 +13,9 @@
 # ---------------------------------------------------------------------------
 
 import json
+import pickle
 import re
+from pathlib import Path
 
 import numpy as np
 from rank_bm25 import BM25Okapi
@@ -48,15 +50,41 @@ def build_bm25(chunk_meta):
     return BM25Okapi(tokenized_corpus)
 
 
+def load_or_build_bm25(chunk_meta, cache_path=None, source_path=None):
+    """Build the BM25 index, or load a pickled copy when it is still fresh.
+    Building over the full corpus takes a noticeable chunk of every app
+    startup; the pickle turns warm restarts into a fast load. The cache counts
+    as fresh when it is newer than source_path (the chunk metadata it was
+    built from).
+
+    Pickle is safe here because the cache is a local build artifact this code
+    itself wrote (same trust level as vectors.npy and ntsb.db); it is never
+    downloaded or accepted from users."""
+    if cache_path is not None:
+        cache = Path(cache_path)
+        if cache.exists() and (
+            source_path is None
+            or cache.stat().st_mtime >= Path(source_path).stat().st_mtime
+        ):
+            with open(cache, "rb") as f:
+                return pickle.load(f)
+    bm25 = build_bm25(chunk_meta)
+    if cache_path is not None:
+        with open(cache_path, "wb") as f:
+            pickle.dump(bm25, f)
+    return bm25
+
+
 def bm25_search(bm25, chunk_meta, query, k=5):
     tokens = tokenize(query)
     if not tokens:
         return []
     scores = bm25.get_scores(tokens)
-    if len(scores) == 0 or float(np.max(scores)) <= 0:
-        return []
     top = np.argsort(scores)[::-1][:k]
-    return [(float(scores[i]), chunk_meta[i]["ntsb_no"], chunk_meta[i]["text"]) for i in top]
+    # a zero score means no token overlap at all; without this filter argsort
+    # pads the top k with arbitrary unrelated chunks once real matches run out
+    return [(float(scores[i]), chunk_meta[i]["ntsb_no"], chunk_meta[i]["text"])
+            for i in top if scores[i] > 0]
 
 
 if __name__ == "__main__":

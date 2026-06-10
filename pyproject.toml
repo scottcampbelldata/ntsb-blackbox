@@ -1,0 +1,8 @@
+# Test configuration only. The project deliberately stays a flat script layout
+# (Hugging Face Spaces runs app.py directly, without installing the repo), so
+# src/ and eval/ are put on the import path for pytest here instead of
+# packaging the project.
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "eval"]
