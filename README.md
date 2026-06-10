@@ -7,7 +7,7 @@ a "black box," but this system is the opposite of one. Every statistic is shown 
 the exact SQL that produced it, and every report is cited to its official NTSB record,
 so nothing is hidden behind generated prose.
 
-**Live demo:** https://huggingface.co/spaces/account-name/ntsb-blackbox
+**Live demo:** <https://huggingface.co/spaces/account-name/ntsb-blackbox>
 
 ---
 
@@ -116,19 +116,25 @@ on landing, but the ones that kill happen enroute and while maneuvering.
 
 ## Repository structure
 
-```
+```text
 ntsb-blackbox/
   app.py                  # Gradio demo (public-facing)
   requirements.txt
+  pyproject.toml          # pytest config (puts src/ and eval/ on the import path)
   README.md
   src/
+    paths.py              # every data-file location, plus the missing-data error
     ingest.py             # CSV -> SQLite + per-accident narrative files
     build_index.py        # chunk + embed narratives -> vector index
     search.py             # dense semantic retrieval
     bm25_search.py        # BM25 keyword retrieval
     hybrid_search.py      # Reciprocal Rank Fusion of the two
+    dedup.py              # collapse chunk-level hits into accidents (shared)
     router.py             # rule-based SQL / retrieval / both classifier
     sql_tool.py           # prebuilt structured analyses
+    ui_helpers.py         # chart / result-card helpers, unit-testable on their own
+    compare.py            # CLI: one query through all three engines, side by side
+  tests/                  # pytest suite; runs without the local data files
   eval/
     questions.jsonl       # hand-labeled evaluation set
     run_eval.py           # scores the three retrievers
@@ -150,6 +156,12 @@ python src/ingest.py
 python src/build_index.py
 # 4. Run the app
 python app.py
+```
+
+The test suite needs no data files (database-dependent tests skip themselves):
+
+```bash
+python -m pytest
 ```
 
 ## Data
