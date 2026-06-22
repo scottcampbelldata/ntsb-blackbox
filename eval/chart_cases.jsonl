@@ -1,0 +1,3 @@
+{"id":"chart_fatal_by_phase","question":"Show fatal accidents by phase of flight as a bar chart","dataframe_columns":["phase","fatal_accidents"],"expected_mark":"bar","required_fields":["phase","fatal_accidents"]}
+{"id":"chart_accidents_by_year","question":"Show accidents by year as a line chart","dataframe_columns":["year","accidents"],"expected_mark":"line","required_fields":["year","accidents"]}
+{"id":"chart_ohio_by_year","question":"Show Ohio accidents by year as a bar chart","dataframe_columns":["year","accidents"],"expected_mark":"bar","required_fields":["year","accidents"]}
