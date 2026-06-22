@@ -1,5 +1,7 @@
 # Data - built locally from the Zenodo source (see README "Running it"), not committed
-data/
+# Leading slash anchors this to the repo-root data/ only, so it does not also
+# ignore source packages like backend/app/data/.
+/data/
 
 # Python
 __pycache__/
