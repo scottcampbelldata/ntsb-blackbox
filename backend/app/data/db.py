@@ -57,7 +57,9 @@ def _run_postgres(sql):
     with psycopg.connect(url, row_factory=dict_row) as con:
         with con.transaction():
             with con.cursor() as cur:
-                cur.execute("SET LOCAL statement_timeout = %s", (settings.query_timeout_ms,))
+                # Postgres SET does not accept bound parameters ($1); inline the
+                # value. int() makes it injection-safe.
+                cur.execute(f"SET LOCAL statement_timeout = {int(settings.query_timeout_ms)}")
                 cur.execute("SET TRANSACTION READ ONLY")
                 cur.execute(sql)
                 rows = cur.fetchall()
