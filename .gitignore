@@ -18,3 +18,8 @@ Untitled.ipynb
 Thumbs.db
 .vscode/
 .idea/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/*.log

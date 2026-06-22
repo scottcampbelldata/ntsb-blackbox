@@ -1,0 +1,5 @@
+{"id":"router_fatal_phase_chart","question":"Which phases of flight have the highest fatal accident counts, and show it as a chart?","expected_route":"chart","notes":"Structured aggregation plus visualization."}
+{"id":"router_icing_retrieval","question":"Why do pilots lose control in icing conditions?","expected_route":"retrieval","notes":"Narrative causal explanation, not a reliable structured count."}
+{"id":"router_landing_enroute_both","question":"Are landing accidents more common than enroute accidents, but are they less fatal?","expected_route":"both","notes":"Needs SQL comparison and narrative examples."}
+{"id":"router_ohio_year_chart","question":"Show accidents in Ohio by year.","expected_route":"chart","notes":"Structured state filter grouped by event_year."}
+{"id":"router_engine_failure_retrieval","question":"What tends to happen after engine failure shortly after takeoff?","expected_route":"retrieval","notes":"Narrative pattern question."}

@@ -1,0 +1,4 @@
+{"id":"sql_fatal_by_phase","question":"Fatal accidents by phase of flight","required_columns":["broad_phaseof_flight","fatal_injury_count"],"required_aggregates":["COUNT"],"expected_output_columns":["phase","fatal_accidents"]}
+{"id":"sql_accidents_by_year","question":"Accidents by year","required_columns":["event_year"],"required_aggregates":["COUNT"],"expected_output_columns":["year","accidents"]}
+{"id":"sql_ohio_by_year","question":"Show accidents in Ohio by year","required_columns":["state","event_year"],"required_aggregates":["COUNT"],"expected_output_columns":["year","accidents"]}
+{"id":"sql_landing_enroute_severity","question":"Compare landing and enroute accident frequency and fatality rate","required_columns":["broad_phaseof_flight","fatal_injury_count"],"required_aggregates":["COUNT","SUM"],"expected_output_columns":["phase","accidents","fatal_accidents"]}

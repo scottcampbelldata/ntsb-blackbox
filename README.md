@@ -1,4 +1,4 @@
-# Black Box - NTSB Aviation Safety Explorer
+# Black Box AI - Natural-Language Aviation Safety Analytics
 
 Question answering over 7,462 US NTSB aviation accident final reports (2016-2023),
 across a **structured table** (counts and statistics) and the **accident narratives**
@@ -24,6 +24,12 @@ Aviation safety questions come in two shapes, and they need different engines:
 The project builds both halves over the same dataset (a shared NTSB accident number
 joins a row in the table to its narrative), and routes questions to the right one.
 
+The production direction is **natural-language aviation safety analytics**: users ask
+plain-English questions about the NTSB accident corpus, and the backend decides whether
+to search narratives, run SQL, build a chart, or combine those paths. The upgraded
+server version is designed around guarded Postgres SQL, cited retrieval, user-provided
+model keys, validated Vega-Lite charts, and an audit trail.
+
 ## Design principles
 
 These are the things worth looking at, and the reasons behind them:
@@ -42,6 +48,11 @@ These are the things worth looking at, and the reasons behind them:
    and prebuilt queries removes both, and puts the engineering on display rather than
    hiding it behind generated text. Text-to-SQL and answer synthesis are documented as
    a local extension (see Limitations).
+5. **The server rebuild treats models as planners, not authorities.** Generated SQL is
+   parsed as Postgres and validated before execution (`src/sql_guard.py`). Generated
+   charts are validated against the real dataframe schema (`src/chart_validator.py`).
+   BYOK utilities keep provider keys session-scoped and redact them from errors
+   (`src/providers.py`).
 
 ## Architecture
 
@@ -55,6 +66,21 @@ flowchart LR
   RET --> H[Hybrid / RRF]
   SQLDB --> OUT[Results with SQL + citations]
   RET --> OUT
+```
+
+Planned VPS/server architecture:
+
+```mermaid
+flowchart LR
+  UI[React or Streamlit UI] --> API[FastAPI on VPS]
+  API --> LLM[OpenAI / Claude / Gemini via BYOK]
+  API --> GUARD[Postgres SQL guard]
+  GUARD --> PG[(Read-only Postgres)]
+  API --> RET[Narrative retrieval]
+  API --> CHART[Vega-Lite validator]
+  PG --> OUT[Answer + table + chart + SQL + audit]
+  RET --> OUT
+  CHART --> OUT
 ```
 
 Pipeline:
@@ -132,13 +158,26 @@ ntsb-blackbox/
     dedup.py              # collapse chunk-level hits into accidents (shared)
     router.py             # rule-based SQL / retrieval / both classifier
     sql_tool.py           # prebuilt structured analyses
+    schema_catalog.py     # approved SQL/chart schema and column capabilities
+    sql_guard.py          # Postgres-dialect SELECT-only validator
+    chart_validator.py    # Vega-Lite spec validator
+    providers.py          # BYOK provider normalization, redaction, session store
     ui_helpers.py         # chart / result-card helpers, unit-testable on their own
     compare.py            # CLI: one query through all three engines, side by side
   tests/                  # pytest suite; runs without the local data files
   eval/
     questions.jsonl       # hand-labeled evaluation set
+    router_cases.jsonl    # starter route evaluation cases
+    sql_cases.jsonl       # starter SQL generation evaluation cases
+    chart_cases.jsonl     # starter chart generation evaluation cases
     run_eval.py           # scores the three retrievers
     label.py              # labeling tool
+  docs/
+    architecture.md       # VPS/Postgres production architecture
+    deployment.md         # VPS deployment notes
+    security.md           # BYOK, VPS, SQL, and chart security model
+    evaluation.md         # router, SQL, chart, and citation evaluation plan
+    limitations.md        # dataset, modeling, and product limitations
   data/                   # built locally, not committed
     ntsb.db
     index/
@@ -157,6 +196,46 @@ python src/build_index.py
 # 4. Run the app
 python app.py
 ```
+
+Run the FastAPI backend:
+
+```bash
+uvicorn backend.app.main:app --host localhost --port 8000
+```
+
+Run the React frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Load the local SQLite data into Postgres for a VPS:
+
+```bash
+python scripts/load_postgres.py \
+  --database-url "postgresql://<loader-db-role>:<loader-db-password>@localhost:5432/ntsb_blackbox"
+```
+
+Update Postgres from a refreshed NTSB CSV snapshot:
+
+```bash
+python scripts/update_ntsb.py \
+  --database-url "postgresql://<loader-db-role>:<loader-db-password>@localhost:5432/ntsb_blackbox" \
+  --source-csv data/raw/latest_ntsb_reports.csv \
+  --dry-run
+
+python scripts/update_ntsb.py \
+  --database-url "postgresql://<loader-db-role>:<loader-db-password>@localhost:5432/ntsb_blackbox" \
+  --source-csv data/raw/latest_ntsb_reports.csv
+```
+
+The updater is idempotent: it hashes each source record, writes only changed rows and
+narratives, records each run in `ingest_runs`, and rebuilds retrieval indexes only when
+the corpus changes.
+
+See `docs/deployment.md` for the full VPS shape.
 
 The test suite needs no data files (database-dependent tests skip themselves):
 
@@ -198,6 +277,9 @@ Stated plainly, because knowing where a system is imperfect is part of building 
   queries) and natural-language answer generation exist as a local extension where the
   model key is controlled, and are kept out of the public link deliberately to avoid
   token cost and abuse surface.
+- **The production rebuild is targeted at a VPS with Postgres.** SQLite remains useful
+  for local ingestion and the no-LLM demo, but the hosted server should execute
+  generated analytical SQL through a read-only Postgres role after validation.
 
 ## License
 
