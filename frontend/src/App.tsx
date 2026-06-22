@@ -8,6 +8,10 @@ import "./styles.css";
 
 const sessionKey = "blackbox-session-id";
 
+// In production (Cloudflare Pages) this is set to the backend subdomain.
+// Left empty in local dev so requests stay relative and hit the Vite proxy.
+const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+
 function getSessionId() {
   const existing = window.localStorage.getItem(sessionKey);
   if (existing) return existing;
@@ -31,7 +35,7 @@ export default function App() {
     setError(null);
     setResponse(null);
     try {
-      const res = await fetch("/api/ask", {
+      const res = await fetch(`${API_BASE}/api/ask`, {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-Session-ID": sessionId },
         body: JSON.stringify({
@@ -55,7 +59,7 @@ export default function App() {
   }
 
   async function clearKey() {
-    await fetch("/api/keys/clear", {
+    await fetch(`${API_BASE}/api/keys/clear`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Session-ID": sessionId },
       body: JSON.stringify({ provider, session_id: sessionId })
