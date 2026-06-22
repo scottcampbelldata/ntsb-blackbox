@@ -5,4 +5,4 @@
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src", "eval"]
+pythonpath = [".", "src", "eval"]
