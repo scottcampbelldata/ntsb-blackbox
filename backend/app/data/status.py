@@ -1,6 +1,6 @@
 import sqlite3
 from pathlib import Path
-from urllib.parse import unquote, urlparse
+from urllib.parse import unquote
 
 from backend.app.config import settings
 
@@ -102,8 +102,10 @@ def _postgres_status(database_url):
 
 
 def _sqlite_path(database_url):
-    parsed = urlparse(database_url)
-    return Path(unquote(parsed.path.lstrip("/")))
+    # Strip exactly the sqlite:/// prefix so an absolute POSIX path keeps its
+    # leading slash (sqlite:////abs vs sqlite:///relative), per the SQLAlchemy
+    # URL convention. lstrip("/") would corrupt absolute paths on Linux.
+    return Path(unquote(database_url[len("sqlite:///"):]))
 
 
 def _table_exists(con, table_name):

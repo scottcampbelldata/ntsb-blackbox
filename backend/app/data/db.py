@@ -1,7 +1,7 @@
 import sqlite3
 from dataclasses import dataclass
 from pathlib import Path
-from urllib.parse import urlparse, unquote
+from urllib.parse import unquote
 
 from backend.app.config import settings
 from sql_guard import validate_sql
@@ -20,10 +20,12 @@ class QueryExecutionError(RuntimeError):
 
 
 def _sqlite_path(database_url):
-    parsed = urlparse(database_url)
-    if parsed.scheme != "sqlite":
+    if not database_url.startswith("sqlite:///"):
         raise QueryExecutionError(f"Unsupported SQLite URL: {database_url}")
-    return Path(unquote(parsed.path.lstrip("/")))
+    # Strip exactly the sqlite:/// prefix so an absolute POSIX path keeps its
+    # leading slash (sqlite:////abs vs sqlite:///relative), per the SQLAlchemy
+    # URL convention. lstrip("/") would corrupt absolute paths on Linux.
+    return Path(unquote(database_url[len("sqlite:///"):]))
 
 
 def _run_sqlite(sql):
