@@ -5,6 +5,8 @@ import { ResultPanels } from "../components/ResultPanels";
 import type { AskResponse, Provider } from "../types";
 
 const sessionKey = "blackbox-session-id";
+// In production (Cloudflare Pages) this is set to the backend subdomain.
+// Left empty in local dev so requests stay relative and hit the Vite proxy.
 const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
 function getSessionId() {
