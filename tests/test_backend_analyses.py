@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
 
+from backend.app.api.analyses import build_analysis_chart_spec
 from backend.app.main import create_app
 from paths import DB_PATH
 
@@ -46,3 +47,26 @@ def test_make_analysis_returns_horizontal_bar_spec():
     # horizontal bar: value on x (quantitative), category on y (nominal)
     assert spec["encoding"]["x"]["field"] == "accidents"
     assert spec["encoding"]["y"]["field"] == "make"
+
+
+def test_chart_spec_year_produces_line():
+    spec = build_analysis_chart_spec(["year", "accidents"], title="By Year")
+    assert spec["mark"] == "line"
+    assert spec["encoding"]["x"]["field"] == "year"
+    assert spec["encoding"]["x"]["type"] == "ordinal"
+    assert spec["encoding"]["y"]["field"] == "accidents"
+    assert spec["encoding"]["y"]["type"] == "quantitative"
+
+
+def test_chart_spec_non_year_produces_horizontal_bar():
+    spec = build_analysis_chart_spec(["make", "accidents"], title="Top Makes")
+    assert spec["mark"] == "bar"
+    assert spec["encoding"]["x"]["field"] == "accidents"
+    assert spec["encoding"]["x"]["type"] == "quantitative"
+    assert spec["encoding"]["y"]["field"] == "make"
+    assert spec["encoding"]["y"]["type"] == "nominal"
+    assert spec["encoding"]["y"]["sort"] == "-x"
+
+
+def test_chart_spec_too_few_columns_returns_none():
+    assert build_analysis_chart_spec(["year"], title="Bad") is None
