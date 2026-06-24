@@ -18,4 +18,9 @@ describe("KpiStrip", () => {
     expect(getByText("2016–2023")).toBeInTheDocument();
     expect(getByText("340")).toBeInTheDocument();
   });
+
+  it("shows em-dash fallback when min_year is null", () => {
+    const { getByText } = render(<KpiStrip kpis={{ ...kpis, min_year: null }} />);
+    expect(getByText("—")).toBeInTheDocument();
+  });
 });
