@@ -22,11 +22,11 @@ export function CitationCoverage({ citation }: { citation: AskResponse["citation
           year: citation.event_year
         });
         setData(result);
+        setLoaded(true);
       } catch {
         setData(null);
       } finally {
         setLoading(false);
-        setLoaded(true);
       }
     }
   }
@@ -42,7 +42,7 @@ export function CitationCoverage({ citation }: { citation: AskResponse["citation
           {!loading && data && data.articles.length > 0 && (
             <ul className="coverage-list">
               {data.articles.map((article, index) => (
-                <li key={article.url ?? index}>
+                <li key={article.url ?? `row-${index}`}>
                   {article.url ? (
                     <a href={article.url} target="_blank" rel="noreferrer">
                       {article.title || article.domain || article.url}

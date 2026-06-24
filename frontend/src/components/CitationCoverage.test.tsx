@@ -46,4 +46,22 @@ describe("CitationCoverage", () => {
     fireEvent.click(screen.getByRole("button", { name: /related coverage/i }));
     await waitFor(() => expect(screen.getByRole("link", { name: /search news/i })).toBeInTheDocument());
   });
+
+  it("shows unavailable on error and retries on reopen", async () => {
+    vi.mocked(fetchContext).mockRejectedValueOnce(new Error("network"));
+    render(<CitationCoverage citation={citation} />);
+
+    fireEvent.click(screen.getByRole("button", { name: /related coverage/i }));
+    await waitFor(() => expect(screen.getByText(/coverage unavailable/i)).toBeInTheDocument());
+
+    // collapse, then reopen -> should retry the fetch (loaded was not set on error)
+    fireEvent.click(screen.getByRole("button", { name: /related coverage/i }));
+    vi.mocked(fetchContext).mockResolvedValueOnce({
+      query: "q", source: "fallback", articles: [], search_url: "https://news.google.com/search?q=x"
+    });
+    fireEvent.click(screen.getByRole("button", { name: /related coverage/i }));
+
+    await waitFor(() => expect(screen.getByRole("link", { name: /search news/i })).toBeInTheDocument());
+    expect(fetchContext).toHaveBeenCalledTimes(2);
+  });
 });
