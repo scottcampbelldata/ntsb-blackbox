@@ -479,3 +479,88 @@ pre {
     grid-template-columns: 1fr;
   }
 }
+
+.page-title {
+  font-family: var(--serif);
+  font-size: 30px;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 8px;
+  max-width: 70ch;
+}
+
+.kpi-strip {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.kpi-tile {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--primary);
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.kpi-tile-accent {
+  border-left-color: var(--danger);
+}
+
+.kpi-label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.kpi-value {
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.analysis-card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.analysis-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+
+.analysis-card-featured .chart-host {
+  min-height: 380px;
+}
+
+.analysis-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.sql-disclosure summary {
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.loading {
+  color: var(--muted);
+  padding: 12px 0;
+}
+
+@media (max-width: 860px) {
+  .kpi-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
