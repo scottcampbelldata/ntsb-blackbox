@@ -33,4 +33,22 @@ describe("Data page", () => {
     expect(screen.getByText("event_year")).toBeInTheDocument();
     expect(screen.getByText(/reliable fatal signal/)).toBeInTheDocument();
   });
+
+  it("renders the latest-ingest section when present", async () => {
+    vi.mocked(fetchDatasetCard).mockResolvedValueOnce({
+      source: { name: "NTSB", provider: "Zenodo", license: "Public domain" },
+      coverage: { start_year: 2016, end_year: 2023, known_gaps: ["gap"] },
+      caveats: ["caveat"],
+      table: "accidents",
+      schema: [{ name: "make", dtype: "TEXT", description: "d" }],
+      counts: { accident_count: 1, tracked_source_count: 42 },
+      database: "sqlite",
+      ready: true,
+      latest_ingest: { source_name: "ntsb-csv", status: "success", finished_at: "2026-06-01T00:00:00Z" }
+    });
+    render(<Data />);
+    await waitFor(() => expect(screen.getByText("Latest ingest")).toBeInTheDocument());
+    expect(screen.getByText("ntsb-csv")).toBeInTheDocument();
+    expect(screen.getByText("42")).toBeInTheDocument();
+  });
 });

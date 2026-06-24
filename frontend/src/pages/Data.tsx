@@ -77,6 +77,26 @@ export function Data() {
               </div>
             </section>
 
+            {card.latest_ingest && (
+              <section className="card-block">
+                <h2>Latest ingest</h2>
+                <dl className="meta-list">
+                  {card.latest_ingest.source_name != null && (
+                    <div><dt>Source</dt><dd>{String(card.latest_ingest.source_name)}</dd></div>
+                  )}
+                  {card.latest_ingest.status != null && (
+                    <div><dt>Status</dt><dd>{String(card.latest_ingest.status)}</dd></div>
+                  )}
+                  {card.latest_ingest.finished_at != null && (
+                    <div><dt>Finished</dt><dd>{String(card.latest_ingest.finished_at)}</dd></div>
+                  )}
+                  {card.counts.tracked_source_count != null && (
+                    <div><dt>Tracked sources</dt><dd className="tabular">{card.counts.tracked_source_count.toLocaleString("en-US")}</dd></div>
+                  )}
+                </dl>
+              </section>
+            )}
+
             <section className="card-block">
               <h2>Caveats</h2>
               <ul className="gap-list">
