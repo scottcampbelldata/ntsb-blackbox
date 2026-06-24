@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from backend.app.api.analyses import router as analyses_router
 from backend.app.api.ask import router as ask_router
 from backend.app.api.health import router as health_router
 from backend.app.config import settings
@@ -17,6 +18,7 @@ def create_app():
     )
     app.include_router(health_router)
     app.include_router(ask_router)
+    app.include_router(analyses_router)
     return app
 
 
