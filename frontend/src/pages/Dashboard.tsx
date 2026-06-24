@@ -41,7 +41,7 @@ export function Dashboard() {
         <h1 className="page-title">Dashboard</h1>
         <p className="subtitle">
           Question answering and analytics over NTSB aviation accident final reports. Every figure
-          below is a real SQL query — expand "View SQL" on any chart to see exactly what produced it.
+          below is a real SQL query. Expand "View SQL" on any chart to see exactly what produced it.
         </p>
 
         {loading && <div className="loading">Loading analytics…</div>}

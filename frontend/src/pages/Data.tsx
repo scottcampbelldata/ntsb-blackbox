@@ -43,7 +43,7 @@ export function Data() {
               <dl className="meta-list">
                 <div><dt>Provider</dt><dd>{card.source.provider}</dd></div>
                 <div><dt>License</dt><dd>{card.source.license}</dd></div>
-                <div><dt>Coverage</dt><dd className="tabular">{card.coverage.start_year}–{card.coverage.end_year}</dd></div>
+                <div><dt>Coverage</dt><dd className="tabular">{card.coverage.start_year}-{card.coverage.end_year}</dd></div>
                 {card.ready && card.counts.accident_count != null && (
                   <div><dt>Rows</dt><dd className="tabular">{card.counts.accident_count.toLocaleString("en-US")}</dd></div>
                 )}
@@ -58,7 +58,7 @@ export function Data() {
             </section>
 
             <section className="card-block">
-              <h2>Schema — <code>{card.table}</code></h2>
+              <h2>Schema: <code>{card.table}</code></h2>
               <div className="table-scroll">
                 <table>
                   <thead>

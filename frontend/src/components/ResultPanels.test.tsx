@@ -25,7 +25,7 @@ const response: AskResponse = {
     { ntsb_no: "ABC123", score: 0.9, matched_passage: "…", probable_cause: "pilot error", report_url: "https://ntsb.gov/ABC123" }
   ],
   confidence: 0.92,
-  limitations: ["Years 2020–2021 are absent."],
+  limitations: ["Years 2020-2021 are absent."],
   audit: [{ step: "route", detail: "routed to both" }]
 };
 
@@ -39,7 +39,7 @@ describe("ResultPanels", () => {
     const { getByText } = render(<ResultPanels response={response} />);
     expect(getByText(/highest fatal counts/)).toBeInTheDocument();
     expect(getByText(/92%/)).toBeInTheDocument();
-    expect(getByText("Years 2020–2021 are absent.")).toBeInTheDocument();
+    expect(getByText("Years 2020-2021 are absent.")).toBeInTheDocument();
     expect(getByText("BOTH")).toBeInTheDocument();
   });
 

@@ -11,7 +11,7 @@ function Tile({ label, value, accent }: { label: string; value: string; accent?:
 
 export function KpiStrip({ kpis }: { kpis: DatasetKpis }) {
   const years =
-    kpis.min_year != null && kpis.max_year != null ? `${kpis.min_year}–${kpis.max_year}` : "—";
+    kpis.min_year != null && kpis.max_year != null ? `${kpis.min_year}-${kpis.max_year}` : "N/A";
   return (
     <div className="kpi-strip">
       <Tile label="Accidents" value={kpis.accident_count.toLocaleString("en-US")} />
