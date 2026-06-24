@@ -77,3 +77,21 @@ export async function clearKey(params: { provider: Provider; sessionId: string }
     body: JSON.stringify({ provider: params.provider, session_id: params.sessionId })
   });
 }
+
+export type SchemaColumn = { name: string; dtype: string; description: string };
+
+export type DatasetCard = {
+  source: { name: string; provider: string; license: string };
+  coverage: { start_year: number; end_year: number; known_gaps: string[] };
+  caveats: string[];
+  table: string;
+  schema: SchemaColumn[];
+  counts: { accident_count: number | null; tracked_source_count: number | null };
+  database: string | null;
+  ready: boolean;
+  latest_ingest: Record<string, unknown> | null;
+};
+
+export async function fetchDatasetCard(): Promise<DatasetCard> {
+  return getJson<DatasetCard>("/api/dataset/card");
+}
