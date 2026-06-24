@@ -1,6 +1,8 @@
 import { ChartView } from "./ChartView";
 import { Tabs, type TabItem } from "./Tabs";
-import { CitationCoverage } from "./CitationCoverage";
+import { NewsPanel, CitationNews } from "./NewsPanel";
+import { useRelatedCoverage } from "../lib/useRelatedCoverage";
+import type { RelatedCoverage } from "../lib/api";
 import type { AskResponse } from "../types";
 
 function AnswerHeader({ response }: { response: AskResponse }) {
@@ -32,7 +34,13 @@ function ResultTable({ table }: { table: NonNullable<AskResponse["table"]> }) {
   );
 }
 
-function Citations({ citations }: { citations: AskResponse["citations"] }) {
+function Citations({
+  citations,
+  coverage
+}: {
+  citations: AskResponse["citations"];
+  coverage: Record<string, RelatedCoverage>;
+}) {
   return (
     <div className="citation-list">
       {citations.map((c) => (
@@ -43,7 +51,7 @@ function Citations({ citations }: { citations: AskResponse["citations"] }) {
             <span className="citation-id">{c.ntsb_no}</span>
           )}
           <p>{c.probable_cause || c.matched_passage}</p>
-          <CitationCoverage citation={c} />
+          <CitationNews coverage={coverage[c.ntsb_no]} />
         </article>
       ))}
     </div>
@@ -51,6 +59,7 @@ function Citations({ citations }: { citations: AskResponse["citations"] }) {
 }
 
 export function ResultPanels({ response }: { response: AskResponse | null }) {
+  const { byId: coverage, loading: coverageLoading } = useRelatedCoverage(response?.citations ?? []);
   if (!response) return null;
 
   const tabs: TabItem[] = [];
@@ -64,7 +73,7 @@ export function ResultPanels({ response }: { response: AskResponse | null }) {
     tabs.push({
       id: "citations",
       label: `Citations (${response.citations.length})`,
-      content: <Citations citations={response.citations} />
+      content: <Citations citations={response.citations} coverage={coverage} />
     });
   }
   tabs.push({
@@ -89,6 +98,9 @@ export function ResultPanels({ response }: { response: AskResponse | null }) {
         <section className="result-chart">
           <ChartView spec={response.chart_spec} rows={response.table.rows} />
         </section>
+      )}
+      {response.citations.length > 0 && (
+        <NewsPanel citations={response.citations} byId={coverage} loading={coverageLoading} />
       )}
       <Tabs tabs={tabs} />
       <section className="limitations">

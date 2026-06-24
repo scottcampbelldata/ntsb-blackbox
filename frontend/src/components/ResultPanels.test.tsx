@@ -1,7 +1,13 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, fireEvent } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import { ResultPanels } from "./ResultPanels";
 import type { AskResponse } from "../types";
+
+vi.mock("../lib/api", () => ({ fetchContext: vi.fn() }));
+
+import { fetchContext } from "../lib/api";
+
+beforeEach(() => vi.mocked(fetchContext).mockReset());
 
 vi.mock("recharts", async (importOriginal) => {
   const actual = await importOriginal<typeof import("recharts")>();
@@ -48,5 +54,21 @@ describe("ResultPanels", () => {
     expect(getByText(/SELECT phase/)).toBeInTheDocument();
     fireEvent.click(getByRole("tab", { name: /Citations/ }));
     expect(getByText("ABC123")).toBeInTheDocument();
+  });
+
+  it("auto-loads news coverage and surfaces it near the top", async () => {
+    vi.mocked(fetchContext).mockResolvedValue({
+      query: "Cessna aviation accident Reno",
+      source: "gdelt",
+      articles: [{ title: "Crash makes headlines", url: "https://news.x/1", domain: "news.x", date: "20190101" }],
+      search_url: "https://news.google.com/search?q=x"
+    });
+    const withId: AskResponse = {
+      ...response,
+      citations: [{ ...response.citations[0], make: "Cessna", city: "Reno", event_year: 2017 }]
+    };
+    const { getByText } = render(<ResultPanels response={withId} />);
+    await waitFor(() => expect(getByText("Crash makes headlines")).toBeInTheDocument());
+    expect(fetchContext).toHaveBeenCalledTimes(1);
   });
 });
