@@ -565,3 +565,49 @@ pre {
   font-size: 13px;
   padding: 1px 5px;
 }
+
+.coverage {
+  margin-top: 8px;
+}
+
+.coverage-toggle {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 0;
+}
+
+.coverage-body {
+  margin-top: 8px;
+}
+
+.coverage-list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.coverage-list a {
+  color: var(--primary);
+}
+
+.coverage-domain {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.coverage-loading,
+.coverage-empty {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.coverage-search {
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+}
