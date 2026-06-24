@@ -1,4 +1,5 @@
 import type { ChartRow } from "./vegaLiteToRecharts";
+import type { AskResponse, Provider } from "../types";
 
 export const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
@@ -41,4 +42,38 @@ export async function fetchAnalyses(): Promise<AnalysisListItem[]> {
 
 export async function fetchAnalysis(key: string): Promise<AnalysisResult> {
   return getJson<AnalysisResult>(`/api/analyses/${key}`);
+}
+
+export type AskRequestParams = {
+  question: string;
+  provider: Provider;
+  model: string;
+  apiKey: string | null;
+  sessionId: string;
+};
+
+export async function ask(params: AskRequestParams): Promise<AskResponse> {
+  const res = await fetch(`${API_BASE}/api/ask`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Session-ID": params.sessionId },
+    body: JSON.stringify({
+      question: params.question,
+      provider: params.provider,
+      model: params.model,
+      api_key: params.apiKey,
+      chart_preference: "auto",
+      session_id: params.sessionId
+    })
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data?.detail || "Request failed");
+  return data as AskResponse;
+}
+
+export async function clearKey(params: { provider: Provider; sessionId: string }): Promise<void> {
+  await fetch(`${API_BASE}/api/keys/clear`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-Session-ID": params.sessionId },
+    body: JSON.stringify({ provider: params.provider, session_id: params.sessionId })
+  });
 }

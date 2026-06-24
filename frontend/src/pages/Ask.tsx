@@ -3,11 +3,9 @@ import { AskPanel } from "../components/AskPanel";
 import { ProviderKeyPanel, modelOptions } from "../components/ProviderKeyPanel";
 import { ResultPanels } from "../components/ResultPanels";
 import type { AskResponse, Provider } from "../types";
+import { ask as askApi, clearKey as clearKeyApi } from "../lib/api";
 
 const sessionKey = "blackbox-session-id";
-// In production (Cloudflare Pages) this is set to the backend subdomain.
-// Left empty in local dev so requests stay relative and hit the Vite proxy.
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 
 function getSessionId() {
   const existing = window.localStorage.getItem(sessionKey);
@@ -34,20 +32,7 @@ export function Ask() {
     setError(null);
     setResponse(null);
     try {
-      const res = await fetch(`${API_BASE}/api/ask`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "X-Session-ID": sessionId },
-        body: JSON.stringify({
-          question,
-          provider,
-          model,
-          api_key: apiKey || null,
-          chart_preference: "auto",
-          session_id: sessionId
-        })
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || "Request failed");
+      const data = await askApi({ question, provider, model, apiKey: apiKey || null, sessionId });
       setResponse(data);
       setApiKey("");
     } catch (err) {
@@ -58,11 +43,7 @@ export function Ask() {
   }
 
   async function clearKey() {
-    await fetch(`${API_BASE}/api/keys/clear`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "X-Session-ID": sessionId },
-      body: JSON.stringify({ provider, session_id: sessionId })
-    });
+    await clearKeyApi({ provider, sessionId });
     setApiKey("");
   }
 
