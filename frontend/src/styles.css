@@ -506,3 +506,62 @@ pre {
   color: var(--muted);
   margin: 0;
 }
+
+.card-block {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  margin-top: 12px;
+  padding: 16px;
+}
+
+.card-block h2 {
+  font-family: var(--serif);
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.source-name {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.meta-list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin: 0;
+}
+
+.meta-list dt {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.meta-list dd {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 2px 0 0;
+}
+
+.gap-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.gap-list li {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.card-block code {
+  background: var(--bg);
+  border-radius: 4px;
+  font-size: 13px;
+  padding: 1px 5px;
+}
