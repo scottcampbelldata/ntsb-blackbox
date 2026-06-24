@@ -13,7 +13,8 @@ def test_build_query_combines_make_model_location():
 def test_news_search_url_is_encoded():
     url = gdelt.news_search_url("Cessna 172 crash")
     assert url.startswith("https://news.google.com/search?")
-    assert "Cessna" in url and "%20" in url or "+" in url
+    assert "Cessna" in url
+    assert "+" in url  # urlencode uses quote_plus: spaces -> '+'
 
 
 def test_parse_articles_keeps_only_urled_items():
