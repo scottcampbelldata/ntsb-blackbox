@@ -7,7 +7,7 @@ from sql_tool import ANALYSES, list_analyses
 router = APIRouter(prefix="/api")
 
 
-def build_analysis_chart_spec(columns, *, title):
+def build_analysis_chart_spec(columns: list[str], *, title: str) -> dict | None:
     """Build a validated Vega-Lite spec for a (category, value) analysis result,
     using the project chart convention: a line for a year category, otherwise a
     horizontal bar. Returns the validated spec, or None if the columns don't fit
