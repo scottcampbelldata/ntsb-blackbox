@@ -644,3 +644,8 @@ pre {
   font-family: var(--serif);
   margin: 0 0 8px;
 }
+
+.no-limitations {
+  color: var(--muted);
+  margin: 0;
+}

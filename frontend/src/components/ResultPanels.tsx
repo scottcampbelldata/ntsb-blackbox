@@ -89,14 +89,16 @@ export function ResultPanels({ response }: { response: AskResponse | null }) {
         </section>
       )}
       <Tabs tabs={tabs} />
-      {response.limitations.length > 0 && (
-        <section className="limitations">
-          <h4>Limitations</h4>
+      <section className="limitations">
+        <h4>Limitations</h4>
+        {response.limitations.length > 0 ? (
           <ul className="limit-list">
             {response.limitations.map((item) => <li key={item}>{item}</li>)}
           </ul>
-        </section>
-      )}
+        ) : (
+          <p className="no-limitations">None reported.</p>
+        )}
+      </section>
     </div>
   );
 }

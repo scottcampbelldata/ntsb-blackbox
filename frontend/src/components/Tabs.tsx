@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type TabItem = { id: string; label: string; content: React.ReactNode };
 
 export function Tabs({ tabs }: { tabs: TabItem[] }) {
   const [active, setActive] = useState(0);
+  useEffect(() => {
+    if (active >= tabs.length && tabs.length > 0) setActive(0);
+  }, [tabs.length]);
   if (tabs.length === 0) return null;
   const current = tabs[Math.min(active, tabs.length - 1)];
 
