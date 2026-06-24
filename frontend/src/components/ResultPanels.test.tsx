@@ -40,6 +40,7 @@ describe("ResultPanels", () => {
     expect(getByText(/highest fatal counts/)).toBeInTheDocument();
     expect(getByText(/92%/)).toBeInTheDocument();
     expect(getByText("Years 2020–2021 are absent.")).toBeInTheDocument();
+    expect(getByText("BOTH")).toBeInTheDocument();
   });
 
   it("shows the SQL tab content by default and switches to Citations", () => {

@@ -21,4 +21,12 @@ describe("Tabs", () => {
     const { container } = render(<Tabs tabs={[]} />);
     expect(container.firstChild).toBeNull();
   });
+
+  it("reflects the selected tab via aria-selected", () => {
+    const { getByRole } = render(<Tabs tabs={tabs} />);
+    expect(getByRole("tab", { name: "SQL" })).toHaveAttribute("aria-selected", "true");
+    expect(getByRole("tab", { name: "Table" })).toHaveAttribute("aria-selected", "false");
+    fireEvent.click(getByRole("tab", { name: "Table" }));
+    expect(getByRole("tab", { name: "Table" })).toHaveAttribute("aria-selected", "true");
+  });
 });
