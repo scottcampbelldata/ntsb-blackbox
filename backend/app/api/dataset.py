@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 
 from backend.app.data.db import run_validated_query
+from backend.app.data.status import get_data_status
+from schema_catalog import COLUMNS, TABLE_NAME
 
 router = APIRouter(prefix="/api")
 
@@ -15,6 +17,53 @@ KPI_SQL = """
       COUNT(DISTINCT make) AS distinct_makes
     FROM accidents
 """
+
+
+DATASET_SOURCE = {
+    "name": "US NTSB aviation accident final reports",
+    "provider": "NTSB, loaded from a public Zenodo dataset",
+    "license": "Public domain (US government work)",
+}
+
+COVERAGE = {
+    "start_year": 2016,
+    "end_year": 2023,
+    "known_gaps": [
+        "2020 and 2021 are absent from this dataset.",
+        "Recent years can be incomplete because NTSB final reports take time to publish.",
+    ],
+}
+
+CAVEATS = [
+    "The loaded corpus is not every aviation accident.",
+    "Manufacturer names are normalized with a curated alias list (casing plus a few "
+    "high-volume merges), not a complete entity-resolution solution.",
+    "highest_injury_level was corrupted to nulls on load; fatal_injury_count > 0 is the "
+    "reliable fatal signal.",
+    "Multi-aircraft records can concatenate values in fields such as number_of_engines.",
+]
+
+
+@router.get("/dataset/card")
+def dataset_card():
+    status = get_data_status()
+    return {
+        "source": DATASET_SOURCE,
+        "coverage": COVERAGE,
+        "caveats": CAVEATS,
+        "table": TABLE_NAME,
+        "schema": [
+            {"name": col.name, "dtype": col.dtype, "description": col.description}
+            for col in COLUMNS
+        ],
+        "counts": {
+            "accident_count": status.get("accident_count"),
+            "tracked_source_count": status.get("tracked_source_count"),
+        },
+        "database": status.get("database"),
+        "ready": status.get("ready", False),
+        "latest_ingest": status.get("latest_ingest"),
+    }
 
 
 @router.get("/dataset")
