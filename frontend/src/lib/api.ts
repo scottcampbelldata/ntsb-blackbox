@@ -95,3 +95,24 @@ export type DatasetCard = {
 export async function fetchDatasetCard(): Promise<DatasetCard> {
   return getJson<DatasetCard>("/api/dataset/card");
 }
+
+export type RelatedArticle = { title: string | null; url: string | null; domain: string | null; date: string | null };
+
+export type RelatedCoverage = {
+  query: string;
+  source: "gdelt" | "fallback";
+  articles: RelatedArticle[];
+  search_url: string;
+};
+
+export type ContextParams = { make?: string; model?: string; city?: string; state?: string; year?: number };
+
+export async function fetchContext(params: ContextParams): Promise<RelatedCoverage> {
+  const qs = new URLSearchParams();
+  if (params.make) qs.set("make", params.make);
+  if (params.model) qs.set("model", params.model);
+  if (params.city) qs.set("city", params.city);
+  if (params.state) qs.set("state", params.state);
+  if (params.year != null) qs.set("year", String(params.year));
+  return getJson<RelatedCoverage>(`/api/context?${qs.toString()}`);
+}
