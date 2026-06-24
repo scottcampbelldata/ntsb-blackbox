@@ -1,5 +1,6 @@
 import { ChartView } from "./ChartView";
 import { Tabs, type TabItem } from "./Tabs";
+import { CitationCoverage } from "./CitationCoverage";
 import type { AskResponse } from "../types";
 
 function AnswerHeader({ response }: { response: AskResponse }) {
@@ -42,6 +43,7 @@ function Citations({ citations }: { citations: AskResponse["citations"] }) {
             <span className="citation-id">{c.ntsb_no}</span>
           )}
           <p>{c.probable_cause || c.matched_passage}</p>
+          <CitationCoverage citation={c} />
         </article>
       ))}
     </div>
