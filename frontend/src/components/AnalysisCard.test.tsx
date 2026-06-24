@@ -38,4 +38,12 @@ describe("AnalysisCard", () => {
     expect(getByText("View SQL")).toBeInTheDocument();
     expect(getByText(/SELECT make, COUNT/)).toBeInTheDocument();
   });
+
+  it("applies analysis-card-featured class when featured prop is set", () => {
+    const { container: featuredContainer } = render(<AnalysisCard analysis={analysis} featured />);
+    expect(featuredContainer.querySelector(".analysis-card-featured")).not.toBeNull();
+
+    const { container: defaultContainer } = render(<AnalysisCard analysis={analysis} />);
+    expect(defaultContainer.querySelector(".analysis-card-featured")).toBeNull();
+  });
 });

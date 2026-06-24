@@ -25,7 +25,7 @@ async function getJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`);
   if (!res.ok) {
     const detail = await res.json().catch(() => null);
-    throw new Error(detail?.detail || `Request failed: ${res.status}`);
+    throw new Error(detail?.detail ?? `Request failed: ${res.status}`);
   }
   return res.json() as Promise<T>;
 }
