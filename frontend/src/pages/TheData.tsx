@@ -59,7 +59,7 @@ export function TheData() {
             <dl className="mt-3">
               <MetaRow label="Provider" value={card.source.provider} />
               <MetaRow label="License" value={card.source.license} />
-              <MetaRow label="Coverage" value={`${card.coverage.start_year}–${card.coverage.end_year}`} />
+              <MetaRow label="Coverage" value={`${card.coverage.start_year}-${card.coverage.end_year}`} />
               {card.ready && card.counts.accident_count != null && (
                 <MetaRow label="Rows" value={card.counts.accident_count.toLocaleString("en-US")} />
               )}

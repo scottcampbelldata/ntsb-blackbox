@@ -11,7 +11,7 @@ export function Masthead() {
   return (
     <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <NavLink to="/" className="group flex items-center gap-2.5" aria-label="Black Box — home">
+        <NavLink to="/" className="group flex items-center gap-2.5" aria-label="Black Box home">
           {/* The recorder: flight data recorders are painted this orange. */}
           <span
             aria-hidden="true"

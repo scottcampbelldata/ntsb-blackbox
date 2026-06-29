@@ -19,7 +19,7 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
           <p className="measure text-sm text-muted">
             Black Box reads the public record: US NTSB aviation accident final reports. The name is
-            ironic — a flight recorder is a black box, but here every figure shows the SQL that
+            ironic: a flight recorder is a black box, but here every figure shows the SQL that
             produced it and every answer cites its source.
           </p>
           <p className="eyebrow mt-3">NTSB · public domain · not affiliated with the NTSB</p>

@@ -56,7 +56,7 @@ export function AskTheRecord() {
           Ask the record
         </h1>
         <p className="lede mt-4">
-          A question goes to a language model, which writes SQL or retrieves narratives — then the
+          A question goes to a language model, which writes SQL or retrieves narratives, then the
           answer comes back with the query, the rows, its sources, and what it could not do.
         </p>
       </header>
