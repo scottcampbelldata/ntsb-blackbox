@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from fastapi import APIRouter, HTTPException
 
 from backend.app.data.db import run_validated_query
@@ -5,6 +7,17 @@ from chart_validator import validate_vega_lite_spec
 from sql_tool import ANALYSES, list_analyses
 
 router = APIRouter(prefix="/api")
+
+
+def _jsonable_rows(rows: list[dict]) -> list[dict]:
+    """Coerce Postgres numeric/Decimal values to float so the response is plain
+    JSON. Postgres returns ROUND() as Decimal (the rate analyses hit this); the
+    SQLite path already returns float, so this also keeps the two backends'
+    output identical. Counts stay int; text/None pass through untouched."""
+    return [
+        {k: (float(v) if isinstance(v, Decimal) else v) for k, v in row.items()}
+        for row in rows
+    ]
 
 
 def build_analysis_chart_spec(
@@ -64,7 +77,7 @@ def run_analysis_endpoint(key: str):
         "label": analysis["label"],
         "sql": result.sql,
         "columns": result.columns,
-        "rows": result.rows,
+        "rows": _jsonable_rows(result.rows),
         "chart_spec": chart_spec,
         "note": analysis.get("note"),
     }
