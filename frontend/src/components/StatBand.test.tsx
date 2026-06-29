@@ -11,7 +11,7 @@ describe("StatBand", () => {
     );
     expect(getByText("7,462")).toBeInTheDocument();
     expect(getByText("1,122")).toBeInTheDocument();
-    expect(getByText("2016–2024")).toBeInTheDocument();
+    expect(getByText("2016-2024")).toBeInTheDocument();
     expect(getByText("15.0% of accidents")).toBeInTheDocument(); // 1122 / 7462
   });
 

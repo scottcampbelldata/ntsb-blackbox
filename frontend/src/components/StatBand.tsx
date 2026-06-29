@@ -28,7 +28,7 @@ function Figure({
 
 export function StatBand({ kpis }: { kpis: DatasetKpis }) {
   const years =
-    kpis.min_year != null && kpis.max_year != null ? `${kpis.min_year}–${kpis.max_year}` : "N/A";
+    kpis.min_year != null && kpis.max_year != null ? `${kpis.min_year}-${kpis.max_year}` : "N/A";
   const rate =
     kpis.accident_count > 0 ? `${((kpis.fatal_count / kpis.accident_count) * 100).toFixed(1)}% of accidents` : undefined;
 

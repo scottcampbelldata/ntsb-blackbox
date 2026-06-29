@@ -46,14 +46,14 @@ export function Findings() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
-      <section className="flex min-h-[calc(100vh-4rem)] flex-col justify-center py-16">
+      <section className="flex flex-col pt-12 pb-2 sm:pt-20">
         <Eyebrow>US NTSB · aviation accident final reports</Eyebrow>
         <h1 className="mt-4 font-display font-medium text-ink" style={{ fontSize: "var(--text-display)", lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)" }}>
           Most accidents happen on landing. The ones that kill happen aloft.
         </h1>
         <p className="lede mt-6 measure">
           Black Box reads the record on US aviation safety. Every figure below is a live SQL query
-          against the accident database — expand “View SQL” on any chart to see exactly what produced
+          against the accident database. Expand “View SQL” on any chart to see exactly what produced
           the number.
         </p>
         <TraceRule className="mt-10" />
