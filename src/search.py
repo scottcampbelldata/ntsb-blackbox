@@ -48,7 +48,12 @@ def search(model, vectors, chunk_meta, query, k=5):
     similarity, and one matrix multiply scores the whole corpus at once."""
     q = model.encode([QUERY_PREFIX + query], normalize_embeddings=True)[0]
     scores = vectors @ q
-    top = np.argsort(scores)[::-1][:k]
+    # argpartition finds the top-k in O(n) without ordering the other ~74k
+    # scores, then we sort only those k. A full argsort of the whole corpus on
+    # every query is wasted work when k is tiny.
+    k = min(k, scores.shape[0])
+    part = np.argpartition(scores, -k)[-k:]
+    top = part[np.argsort(scores[part])[::-1]]
     return [(float(scores[i]), chunk_meta[i]["ntsb_no"], chunk_meta[i]["text"]) for i in top]
 
 

@@ -397,6 +397,13 @@ pre {
   min-height: 380px;
 }
 
+.analysis-note {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 10px 0 0;
+}
+
 .analysis-grid {
   display: grid;
   gap: 12px;

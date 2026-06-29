@@ -70,3 +70,34 @@ def test_chart_spec_non_year_produces_horizontal_bar():
 
 def test_chart_spec_too_few_columns_returns_none():
     assert build_analysis_chart_spec(["year"], title="Bad") is None
+
+
+def test_chart_spec_plots_value_col_when_provided():
+    # rate analyses carry extra count columns; the chart must plot the rate.
+    spec = build_analysis_chart_spec(
+        ["phase", "accidents", "fatal", "fatal_rate_pct"],
+        title="Fatality rate by phase",
+        value_col="fatal_rate_pct",
+    )
+    assert spec["mark"] == "bar"
+    assert spec["encoding"]["x"]["field"] == "fatal_rate_pct"
+    assert spec["encoding"]["y"]["field"] == "phase"
+
+
+def test_chart_spec_ignores_unknown_value_col():
+    # an unknown value_col falls back to the second column, never crashes.
+    spec = build_analysis_chart_spec(
+        ["make", "accidents"], title="Top makes", value_col="not_a_column"
+    )
+    assert spec["encoding"]["x"]["field"] == "accidents"
+
+
+@pytest.mark.skipif(not DB_PATH.exists(), reason="local database not built")
+def test_rate_analysis_returns_note_and_charts_the_rate():
+    client = TestClient(create_app())
+    response = client.get("/api/analyses/fatal_rate_by_phase")
+    assert response.status_code == 200
+    data = response.json()
+    assert data["note"]                                   # caveat surfaced to UI
+    assert "fatal_rate_pct" in data["columns"]
+    assert data["chart_spec"]["encoding"]["x"]["field"] == "fatal_rate_pct"
