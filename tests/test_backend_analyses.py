@@ -1,9 +1,22 @@
+import json
+from decimal import Decimal
+
 import pytest
 from fastapi.testclient import TestClient
 
-from backend.app.api.analyses import build_analysis_chart_spec
+from backend.app.api.analyses import build_analysis_chart_spec, _jsonable_rows
 from backend.app.main import create_app
 from paths import DB_PATH
+
+
+def test_jsonable_rows_coerces_postgres_decimal_to_float():
+    # Postgres returns ROUND() as Decimal, which stdlib json cannot serialize.
+    rows = [{"phase": "Landing", "accidents": 2575, "fatal_rate_pct": Decimal("1.4")}]
+    out = _jsonable_rows(rows)
+    assert out[0]["fatal_rate_pct"] == 1.4
+    assert isinstance(out[0]["fatal_rate_pct"], float)
+    assert isinstance(out[0]["accidents"], int)        # counts stay int
+    json.dumps(out)                                     # must not raise
 
 
 def test_list_analyses_returns_keys_and_labels():
