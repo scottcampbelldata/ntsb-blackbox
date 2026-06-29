@@ -84,6 +84,7 @@ export function ChartView({
               tickLine={false}
               axisLine={false}
               width={132}
+              interval={0}
             />
             <Tooltip
               cursor={{ fill: "var(--accent-wash)" }}
