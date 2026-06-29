@@ -46,7 +46,7 @@ export function Findings() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
-      <section className="flex flex-col pt-12 pb-2 sm:pt-20">
+      <section className="flex flex-col pt-12 pb-10 sm:pt-20">
         <Eyebrow>US NTSB · aviation accident final reports</Eyebrow>
         <h1 className="mt-4 font-display font-medium text-ink" style={{ fontSize: "var(--text-display)", lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)" }}>
           Most accidents happen on landing. The ones that kill happen aloft.
