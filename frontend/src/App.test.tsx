@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render } from "@testing-library/react";
 import { act } from "react";
 import { MemoryRouter } from "react-router-dom";
+import { ThemeProvider } from "./theme/useTheme";
 
 vi.mock("recharts", async (importOriginal) => {
   const actual = await importOriginal<typeof import("recharts")>();
@@ -13,9 +14,13 @@ vi.mock("recharts", async (importOriginal) => {
   };
 });
 
-vi.mock("../lib/api", () => ({
+vi.mock("./lib/api", () => ({
   fetchDataset: vi.fn().mockResolvedValue({
-    accident_count: 0, fatal_count: 0, min_year: 2016, max_year: 2023, distinct_makes: 0
+    accident_count: 0,
+    fatal_count: 0,
+    min_year: 2016,
+    max_year: 2024,
+    distinct_makes: 0
   }),
   fetchAnalyses: vi.fn().mockResolvedValue([]),
   fetchAnalysis: vi.fn()
@@ -23,28 +28,30 @@ vi.mock("../lib/api", () => ({
 
 import App from "./App";
 
+function renderAt(path: string) {
+  return render(
+    <ThemeProvider>
+      <MemoryRouter initialEntries={[path]}>
+        <App />
+      </MemoryRouter>
+    </ThemeProvider>
+  );
+}
+
 describe("App routing", () => {
-  it("renders the Dashboard at /", async () => {
+  it("renders the Findings hero at /", async () => {
     let getByRole!: ReturnType<typeof render>["getByRole"];
     await act(async () => {
-      ({ getByRole } = render(
-        <MemoryRouter initialEntries={["/"]}>
-          <App />
-        </MemoryRouter>
-      ));
+      ({ getByRole } = renderAt("/"));
     });
-    expect(getByRole("heading", { name: "Dashboard" })).toBeInTheDocument();
+    expect(getByRole("heading", { name: /the ones that kill happen aloft/i })).toBeInTheDocument();
   });
 
   it("renders the Ask page at /ask", async () => {
-    let getByPlaceholderText!: ReturnType<typeof render>["getByPlaceholderText"];
+    let getByRole!: ReturnType<typeof render>["getByRole"];
     await act(async () => {
-      ({ getByPlaceholderText } = render(
-        <MemoryRouter initialEntries={["/ask"]}>
-          <App />
-        </MemoryRouter>
-      ));
+      ({ getByRole } = renderAt("/ask"));
     });
-    expect(getByPlaceholderText(/ask about the loaded ntsb/i)).toBeInTheDocument();
+    expect(getByRole("heading", { name: "Ask the record" })).toBeInTheDocument();
   });
 });
