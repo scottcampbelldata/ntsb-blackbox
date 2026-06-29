@@ -39,6 +39,18 @@ describe("AnalysisCard", () => {
     expect(getByText(/SELECT make, COUNT/)).toBeInTheDocument();
   });
 
+  it("renders the analyst note when present, and omits it otherwise", () => {
+    const withNote: AnalysisResult = {
+      ...analysis,
+      note: "Read this as exposure, not risk."
+    };
+    const { getByText } = render(<AnalysisCard analysis={withNote} />);
+    expect(getByText("Read this as exposure, not risk.")).toBeInTheDocument();
+
+    const { container } = render(<AnalysisCard analysis={analysis} />);
+    expect(container.querySelector(".analysis-note")).toBeNull();
+  });
+
   it("applies analysis-card-featured class when featured prop is set", () => {
     const { container: featuredContainer } = render(<AnalysisCard analysis={analysis} featured />);
     expect(featuredContainer.querySelector(".analysis-card-featured")).not.toBeNull();

@@ -12,6 +12,7 @@ export function AnalysisCard({
     <section className={`analysis-card${featured ? " analysis-card-featured" : ""}`}>
       <h3 className="analysis-title">{analysis.label}</h3>
       <ChartView spec={analysis.chart_spec} rows={analysis.rows} />
+      {analysis.note && <p className="analysis-note">{analysis.note}</p>}
       <details className="sql-disclosure">
         <summary>View SQL</summary>
         <pre>{analysis.sql}</pre>

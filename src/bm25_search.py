@@ -79,10 +79,16 @@ def bm25_search(bm25, chunk_meta, query, k=5):
     tokens = tokenize(query)
     if not tokens:
         return []
-    scores = bm25.get_scores(tokens)
-    top = np.argsort(scores)[::-1][:k]
-    # a zero score means no token overlap at all; without this filter argsort
-    # pads the top k with arbitrary unrelated chunks once real matches run out
+    scores = np.asarray(bm25.get_scores(tokens))
+    if scores.size == 0:
+        return []
+    # argpartition pulls the top-k in O(n) instead of argsort-ing all ~74k
+    # scores; we then sort just those k descending.
+    k = min(k, scores.shape[0])
+    part = np.argpartition(scores, -k)[-k:]
+    top = part[np.argsort(scores[part])[::-1]]
+    # a zero score means no token overlap at all; without this filter the top k
+    # gets padded with arbitrary unrelated chunks once real matches run out
     return [(float(scores[i]), chunk_meta[i]["ntsb_no"], chunk_meta[i]["text"])
             for i in top if scores[i] > 0]
 

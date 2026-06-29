@@ -56,8 +56,36 @@ needs_db = pytest.mark.skipif(not DB_PATH.exists(), reason="local database not b
 
 @needs_db
 @pytest.mark.parametrize("key", sorted(ANALYSES))
-def test_every_analysis_runs_and_returns_a_two_column_result(key):
+def test_every_analysis_runs_and_returns_rows(key):
     sql, df = run_analysis(key)
     assert sql.strip().upper().startswith("SELECT")
-    assert df.shape[1] == 2
+    # count analyses are (category, value); rate analyses carry extra count
+    # columns alongside the rate, so the contract is "at least two columns".
+    assert df.shape[1] >= 2
     assert len(df) > 0
+
+
+@needs_db
+@pytest.mark.parametrize("key", sorted(ANALYSES))
+def test_declared_chart_col_exists_in_result(key):
+    chart_col = ANALYSES[key].get("chart_col")
+    if chart_col is not None:
+        _sql, df = run_analysis(key)
+        assert chart_col in df.columns
+
+
+@needs_db
+@pytest.mark.parametrize("key", sorted(k for k in ANALYSES if k.startswith("fatal_rate")))
+def test_rate_analyses_are_valid_percentages(key):
+    _sql, df = run_analysis(key)
+    assert df["fatal_rate_pct"].between(0, 100).all()
+    assert (df["fatal"] <= df["accidents"]).all()
+
+
+@needs_db
+def test_purpose_codes_are_decoded_and_concatenations_excluded():
+    _sql, df = run_analysis("fatal_rate_by_purpose")
+    purposes = set(df["purpose"])
+    assert "Personal" in purposes        # PERS decoded
+    assert "PERS" not in purposes
+    assert not any(", " in str(p) for p in purposes)  # no multi-aircraft rows

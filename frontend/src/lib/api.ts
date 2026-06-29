@@ -12,6 +12,7 @@ export type AnalysisResult = {
   columns: string[];
   rows: ChartRow[];
   chart_spec: Record<string, unknown> | null;
+  note?: string | null;
 };
 
 export type DatasetKpis = {

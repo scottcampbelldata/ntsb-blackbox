@@ -7,14 +7,21 @@ from sql_tool import ANALYSES, list_analyses
 router = APIRouter(prefix="/api")
 
 
-def build_analysis_chart_spec(columns: list[str], *, title: str) -> dict | None:
+def build_analysis_chart_spec(
+    columns: list[str], *, title: str, value_col: str | None = None
+) -> dict | None:
     """Build a validated Vega-Lite spec for a (category, value) analysis result,
     using the project chart convention: a line for a year category, otherwise a
     horizontal bar. Returns the validated spec, or None if the columns don't fit
-    the (category, value) shape."""
+    the (category, value) shape.
+
+    The value plotted is `value_col` when given and present (rate analyses carry
+    extra count columns and want the rate charted, not the count beside it);
+    otherwise it defaults to the second column."""
     if len(columns) < 2:
         return None
-    category, value = columns[0], columns[1]
+    category = columns[0]
+    value = value_col if value_col in columns else columns[1]
     if category == "year":
         spec = {
             "mark": "line",
@@ -49,7 +56,9 @@ def run_analysis_endpoint(key: str):
     if analysis is None:
         raise HTTPException(status_code=404, detail=f"Unknown analysis: {key}")
     result = run_validated_query(analysis["sql"])
-    chart_spec = build_analysis_chart_spec(result.columns, title=analysis["label"])
+    chart_spec = build_analysis_chart_spec(
+        result.columns, title=analysis["label"], value_col=analysis.get("chart_col")
+    )
     return {
         "key": key,
         "label": analysis["label"],
@@ -57,4 +66,5 @@ def run_analysis_endpoint(key: str):
         "columns": result.columns,
         "rows": result.rows,
         "chart_spec": chart_spec,
+        "note": analysis.get("note"),
     }

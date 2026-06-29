@@ -30,32 +30,62 @@ MAKE_ALIASES = {
     "AIR TRACTOR INC": "AIR TRACTOR",
 }
 
+# NTSB purpose-of-flight codes -> human-readable labels. The raw column stores
+# cryptic codes (PERS, INST, ...); decoding them in the query keeps the result
+# readable while leaving the mapping fully visible in the SQL the app shows.
+PURPOSE_LABELS = {
+    "PERS": "Personal",
+    "INST": "Instructional",
+    "AAPL": "Aerial application",
+    "BUS": "Business",
+    "POSI": "Positioning",
+    "AOBV": "Aerial observation",
+    "OWRK": "Other work use",
+    "FLTS": "Flight test",
+    "FERY": "Ferry",
+    "SKYD": "Skydiving",
+    "EXLD": "External load",
+}
 
-def _make_normalization_case(aliases=MAKE_ALIASES):
-    """Build a CASE expression from MAKE_ALIASES so name variants collapse to
-    one canonical make. Generated from the dict (single source of truth) and
-    embedded in the query so the mapping is fully visible to anyone reading
-    the SQL the demo shows."""
-    for raw, canon in aliases.items():
+# Multi-aircraft accidents store concatenated values in a single field, e.g.
+# purpose "PERS, PERS". They cannot be cleanly attributed to one group, so the
+# grouped rate analyses exclude them with this predicate rather than letting them
+# show up as spurious comma-joined categories.
+_SINGLE_VALUE = "NOT LIKE '%, %'"
+
+
+def _decode_case(input_sql, mapping, default_sql):
+    """Build a CASE expression from a dict (the single source of truth) so the
+    mapping is embedded in, and visible in, the SQL the app displays. `input_sql`
+    and `default_sql` are raw SQL fragments (e.g. UPPER(make))."""
+    for raw, canon in mapping.items():
         # the names are embedded in SQL string literals below; a quote would
         # silently break every query built from this expression
         if "'" in raw or "'" in canon:
             raise ValueError(
-                f"alias may not contain a single quote: {raw!r} -> {canon!r}"
+                f"mapping value may not contain a single quote: {raw!r} -> {canon!r}"
             )
     whens = "\n".join(
         f"               WHEN '{raw}' THEN '{canon}'"
-        for raw, canon in aliases.items()
+        for raw, canon in mapping.items()
     )
     return (
-        "CASE UPPER(make)\n"
+        f"CASE {input_sql}\n"
         f"{whens}\n"
-        "               ELSE UPPER(make)\n"
+        f"               ELSE {default_sql}\n"
         "             END"
     )
 
 
+def _make_normalization_case(aliases=MAKE_ALIASES):
+    """Collapse make-name variants to one canonical make (casing + curated
+    aliases). Thin wrapper over _decode_case kept for its callers and tests."""
+    return _decode_case("UPPER(make)", aliases, "UPPER(make)")
+
+
 _MAKE_EXPR = _make_normalization_case()
+_PURPOSE_EXPR = _decode_case("UPPER(purpose_of_flight)", PURPOSE_LABELS,
+                             "UPPER(purpose_of_flight)")
 
 ANALYSES = {
     "accidents_by_year": {
@@ -81,6 +111,13 @@ ANALYSES = {
             ORDER BY accidents DESC
             LIMIT 15
         """,
+        "note": (
+            "Read this as exposure, not risk. This is a raw count with no "
+            "denominator: Cessna and Piper lead largely because they are the most "
+            "numerous aircraft flying, not the most dangerous. Ranking risk would "
+            "need fleet size or flight hours, which this dataset does not contain. "
+            "For a risk signal that is available, see the fatality-rate analyses."
+        ),
     },
     "fatal_breakdown": {
         "label": "Fatal vs non-fatal accidents",
@@ -127,6 +164,12 @@ ANALYSES = {
             ORDER BY accidents DESC
             LIMIT 15
         """,
+        "note": (
+            "Exposure again, not danger. States with more flying (and more "
+            "registered aircraft and airports) sit at the top; this chart does not "
+            "normalize for that, so it largely tracks aviation activity rather than "
+            "any state-level safety difference."
+        ),
     },
     "weather_breakdown": {
         "label": "Accidents by weather condition",
@@ -137,6 +180,85 @@ ANALYSES = {
             GROUP BY weather_condition
             ORDER BY accidents DESC
         """,
+    },
+    # ----- Fatality-RATE analyses ----------------------------------------------
+    # A raw count tells you where accidents happen; a fatality rate (the share of
+    # accidents in a group that killed someone) tells you which conditions are
+    # most lethal when an accident occurs. Each rate query reports the group size
+    # too (so the reader can judge sample reliability), drops tiny buckets, and
+    # excludes multi-aircraft concatenated values. chart_col tells the chart
+    # builder to plot the rate rather than the count column beside it.
+    "fatal_rate_by_phase": {
+        "label": "Fatality rate by phase of flight",
+        "chart_col": "fatal_rate_pct",
+        "sql": """
+            SELECT
+              broad_phaseof_flight AS phase,
+              COUNT(*) AS accidents,
+              SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END) AS fatal,
+              ROUND(100.0 * SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END)
+                    / COUNT(*), 1) AS fatal_rate_pct
+            FROM accidents
+            WHERE broad_phaseof_flight IS NOT NULL
+              AND broad_phaseof_flight <> 'Unknown'
+            GROUP BY broad_phaseof_flight
+            HAVING COUNT(*) >= 50
+            ORDER BY fatal_rate_pct DESC
+        """,
+        "note": (
+            "The inversion that matters. Landing produces the most accidents but "
+            "kills in only about 1% of them, while maneuvering, initial climb, and "
+            "enroute are fatal in roughly a quarter to a third of accidents. Most "
+            "accidents happen on landing; the ones that kill happen with energy and "
+            "altitude. Buckets under 50 accidents are dropped as too small to trust."
+        ),
+    },
+    "fatal_rate_by_weather": {
+        "label": "Fatality rate by weather condition",
+        "chart_col": "fatal_rate_pct",
+        "sql": """
+            SELECT
+              weather_condition AS weather,
+              COUNT(*) AS accidents,
+              SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END) AS fatal,
+              ROUND(100.0 * SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END)
+                    / COUNT(*), 1) AS fatal_rate_pct
+            FROM accidents
+            WHERE weather_condition IN ('VMC', 'IMC')
+            GROUP BY weather_condition
+            ORDER BY fatal_rate_pct DESC
+        """,
+        "note": (
+            "Instrument conditions are roughly four times as lethal. An accident in "
+            "IMC (cloud or low visibility, flown on instruments) is fatal about half "
+            "the time, versus about 13% in VMC (clear visual conditions). Most flying "
+            "is in VMC, which is why VMC still dominates the raw accident count "
+            "despite the far lower rate."
+        ),
+    },
+    "fatal_rate_by_purpose": {
+        "label": "Fatality rate by purpose of flight",
+        "chart_col": "fatal_rate_pct",
+        "sql": f"""
+            SELECT
+              {_PURPOSE_EXPR} AS purpose,
+              COUNT(*) AS accidents,
+              SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END) AS fatal,
+              ROUND(100.0 * SUM(CASE WHEN fatal_injury_count > 0 THEN 1 ELSE 0 END)
+                    / COUNT(*), 1) AS fatal_rate_pct
+            FROM accidents
+            WHERE purpose_of_flight IS NOT NULL
+              AND purpose_of_flight {_SINGLE_VALUE}
+            GROUP BY 1
+            HAVING COUNT(*) >= 50
+            ORDER BY fatal_rate_pct DESC
+        """,
+        "note": (
+            "Instructional flying is the safest common category, at about half the "
+            "personal-flight fatality rate, consistent with a trained instructor "
+            "aboard, a controlled environment, and conservative profiles. Codes are "
+            "decoded in the query; buckets under 50 accidents are dropped."
+        ),
     },
 }
 
