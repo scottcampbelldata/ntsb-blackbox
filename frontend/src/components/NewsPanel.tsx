@@ -1,3 +1,5 @@
+import { Newspaper } from "lucide-react";
+import { Eyebrow } from "./primitives";
 import type { RelatedArticle, RelatedCoverage } from "../lib/api";
 import type { AskResponse } from "../types";
 
@@ -6,7 +8,12 @@ type Citation = AskResponse["citations"][number];
 function ArticleLink({ article }: { article: RelatedArticle }) {
   if (!article.url) return <span>{article.title || ""}</span>;
   return (
-    <a href={article.url} target="_blank" rel="noreferrer">
+    <a
+      href={article.url}
+      target="_blank"
+      rel="noreferrer"
+      className="text-ink underline decoration-rule-strong underline-offset-2 hover:decoration-accent"
+    >
       {article.title || article.domain || article.url}
     </a>
   );
@@ -33,21 +40,28 @@ export function NewsPanel({
   const total = withNews.reduce((sum, entry) => sum + entry.coverage!.articles.length, 0);
 
   return (
-    <section className="news-panel">
-      <h4 className="news-panel-title">In the news{total > 0 ? ` (${total})` : ""}</h4>
+    <section className="rounded-lg border border-rule bg-surface-sunken p-5">
+      <h4 className="news-panel-title flex items-center gap-2">
+        <Newspaper size={15} className="text-accent" aria-hidden="true" />
+        <span className="eyebrow !text-ink">In the news{total > 0 ? ` (${total})` : ""}</span>
+      </h4>
       {loading && total === 0 && (
-        <p className="news-empty">Searching news coverage for these accidents…</p>
+        <p className="news-empty mt-3 text-sm text-muted">
+          Searching news coverage for these accidents…
+        </p>
       )}
       {!loading && total === 0 && (
-        <p className="news-empty">No external news coverage found for these accidents.</p>
+        <p className="news-empty mt-3 text-sm text-muted">
+          No external news coverage found for these accidents.
+        </p>
       )}
       {total > 0 && (
-        <ul className="news-list">
+        <ul className="mt-3 space-y-2.5">
           {withNews.flatMap(({ citation, coverage }) =>
             coverage!.articles.map((article, index) => (
-              <li key={`${citation.ntsb_no}-${index}`} className="news-item">
+              <li key={`${citation.ntsb_no}-${index}`} className="text-sm leading-snug">
                 <ArticleLink article={article} />
-                <span className="news-meta">
+                <span className="data mt-0.5 block text-xs text-muted">
                   {article.domain ? `${article.domain} · ` : ""}
                   {citation.ntsb_no}
                 </span>
@@ -65,13 +79,13 @@ export function NewsPanel({
 export function CitationNews({ coverage }: { coverage: RelatedCoverage | undefined }) {
   if (!coverage || coverage.articles.length === 0) return null;
   return (
-    <div className="coverage">
-      <span className="coverage-label">In the news</span>
-      <ul className="coverage-list">
+    <div className="mt-2 border-l-2 border-rule pl-3">
+      <Eyebrow>In the news</Eyebrow>
+      <ul className="mt-1 space-y-1">
         {coverage.articles.map((article, index) => (
-          <li key={article.url ?? `row-${index}`}>
+          <li key={article.url ?? `row-${index}`} className="text-sm">
             <ArticleLink article={article} />
-            {article.domain && <span className="coverage-domain"> · {article.domain}</span>}
+            {article.domain && <span className="data text-xs text-muted"> · {article.domain}</span>}
           </li>
         ))}
       </ul>

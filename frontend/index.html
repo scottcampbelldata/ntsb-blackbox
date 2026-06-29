@@ -1,9 +1,26 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Black Box AI</title>
+    <meta
+      name="description"
+      content="Black Box reads the record on US aviation safety: 7,462 NTSB accident reports, every figure traceable to the SQL that produced it."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <title>Black Box — reading the record on aviation safety</title>
+    <!-- Resolve the theme before first paint so there is no flash. The app's
+         ThemeProvider owns the value afterward; this only mirrors its logic. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("blackbox-theme");
+          var systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = saved === "light" || saved === "dark" ? saved : systemDark ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

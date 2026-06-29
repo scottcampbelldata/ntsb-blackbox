@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { AskPanel } from "../components/AskPanel";
+import { QuestionConsole } from "../components/QuestionConsole";
 import { ProviderKeyPanel, modelOptions } from "../components/ProviderKeyPanel";
-import { ResultPanels } from "../components/ResultPanels";
+import { AnswerArticle } from "../components/AnswerArticle";
+import { Disclosure, Eyebrow } from "../components/primitives";
 import type { AskResponse, Provider } from "../types";
 import { ask as askApi, clearKey as clearKeyApi } from "../lib/api";
 
@@ -15,13 +16,13 @@ function getSessionId() {
   return created;
 }
 
-export function Ask() {
+export function AskTheRecord() {
   const sessionId = useMemo(getSessionId, []);
   const [provider, setProvider] = useState<Provider>("openai");
   const [model, setModel] = useState(modelOptions.openai[0]);
   const [apiKey, setApiKey] = useState("");
   const [question, setQuestion] = useState(
-    "Which phases of flight have the highest fatal accident counts, and show it as a chart?"
+    "Which phases of flight have the highest fatal accident counts? Show a chart."
   );
   const [response, setResponse] = useState<AskResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -48,10 +49,22 @@ export function Ask() {
   }
 
   return (
-    <div className="workspace">
-      <section className="main-column">
-        <details className="provider-menu">
-          <summary>Model Key</summary>
+    <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
+      <header className="mb-8">
+        <Eyebrow>Natural-language query</Eyebrow>
+        <h1 className="mt-3 font-display text-4xl font-medium text-ink sm:text-5xl">
+          Ask the record
+        </h1>
+        <p className="lede mt-4">
+          A question goes to a language model, which writes SQL or retrieves narratives — then the
+          answer comes back with the query, the rows, its sources, and what it could not do.
+        </p>
+      </header>
+
+      <QuestionConsole question={question} loading={loading} onQuestionChange={setQuestion} onSubmit={ask} />
+
+      <div className="mt-4">
+        <Disclosure label="Model & API key">
           <ProviderKeyPanel
             provider={provider}
             model={model}
@@ -64,11 +77,16 @@ export function Ask() {
             onApiKeyChange={setApiKey}
             onClear={clearKey}
           />
-        </details>
-        <AskPanel question={question} loading={loading} onQuestionChange={setQuestion} onSubmit={ask} />
-        {error && <div className="error">{error}</div>}
-        <ResultPanels response={response} />
-      </section>
+        </Disclosure>
+      </div>
+
+      {error && (
+        <div className="mt-6 rounded-lg border border-danger/40 bg-surface p-4 text-sm text-danger">
+          {error}
+        </div>
+      )}
+
+      <AnswerArticle response={response} />
     </div>
   );
 }

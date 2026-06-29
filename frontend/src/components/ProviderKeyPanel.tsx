@@ -1,4 +1,4 @@
-import { KeyRound, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import type { Provider } from "../types";
 
 export const modelOptions: Record<Provider, string[]> = {
@@ -17,45 +17,58 @@ type Props = {
   onClear: () => void;
 };
 
+const fieldClass =
+  "mt-1 w-full rounded-md border border-rule bg-surface px-3 py-2 text-sm text-ink " +
+  "transition-colors focus:border-accent focus:outline-none";
+const labelClass = "block text-xs font-medium text-muted";
+
 export function ProviderKeyPanel(props: Props) {
   return (
-    <section className="panel key-panel">
-      <div className="panel-title">
-        <KeyRound size={18} />
-        <span>Model Key</span>
-      </div>
-      <div className="form-grid">
-        <label>
-          Provider
-          <select value={props.provider} onChange={(event) => props.onProviderChange(event.target.value as Provider)}>
-            <option value="openai">OpenAI</option>
-            <option value="anthropic">Claude</option>
-            <option value="gemini">Gemini</option>
-          </select>
-        </label>
-        <label>
-          Model
-          <select value={props.model} onChange={(event) => props.onModelChange(event.target.value)}>
-            {modelOptions[props.provider].map((model) => (
-              <option key={model} value={model}>
-                {model}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-      <label>
+    <section className="grid gap-3 sm:grid-cols-2">
+      <label className={labelClass}>
+        Provider
+        <select
+          className={fieldClass}
+          value={props.provider}
+          onChange={(event) => props.onProviderChange(event.target.value as Provider)}
+        >
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Claude</option>
+          <option value="gemini">Gemini</option>
+        </select>
+      </label>
+      <label className={labelClass}>
+        Model
+        <select
+          className={fieldClass}
+          value={props.model}
+          onChange={(event) => props.onModelChange(event.target.value)}
+        >
+          {modelOptions[props.provider].map((model) => (
+            <option key={model} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className={`${labelClass} sm:col-span-2`}>
         API key
         <input
+          className={`${fieldClass} data`}
           value={props.apiKey}
           onChange={(event) => props.onApiKeyChange(event.target.value)}
-          placeholder="Used for this server session only"
+          placeholder="Stored for this server session only"
           type="password"
         />
       </label>
-      <button className="ghost-button" onClick={props.onClear} type="button" title="Clear session key">
-        <Trash2 size={16} />
-        Clear
+      <button
+        className="inline-flex items-center gap-1.5 justify-self-start text-xs text-muted transition-colors hover:text-danger"
+        onClick={props.onClear}
+        type="button"
+        title="Clear session key"
+      >
+        <Trash2 size={14} aria-hidden="true" />
+        Clear key
       </button>
     </section>
   );
