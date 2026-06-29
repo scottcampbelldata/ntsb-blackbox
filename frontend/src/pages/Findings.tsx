@@ -56,9 +56,9 @@ export function Findings() {
           against the accident database — expand “View SQL” on any chart to see exactly what produced
           the number.
         </p>
+        <TraceRule className="mt-10" />
       </section>
 
-      <TraceRule className="mb-10" />
 
       {error && (
         <div className="rounded-lg border border-danger/40 bg-surface p-4 text-sm text-danger">
