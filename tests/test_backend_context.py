@@ -28,7 +28,7 @@ def test_parse_articles_keeps_only_urled_items():
 
 
 def test_context_endpoint_returns_gdelt_articles(monkeypatch):
-    async def fake_articles(query, max_records):
+    async def fake_articles(query, max_records, window=None):
         return [{"title": "Crash report", "url": "https://news.x/1", "domain": "news.x", "date": "20190101"}]
     monkeypatch.setattr(gdelt, "_gdelt_articles", fake_articles)
 
@@ -42,7 +42,7 @@ def test_context_endpoint_returns_gdelt_articles(monkeypatch):
 
 
 def test_context_endpoint_falls_back_on_error(monkeypatch):
-    async def boom(query, max_records):
+    async def boom(query, max_records, window=None):
         raise RuntimeError("gdelt down")
     monkeypatch.setattr(gdelt, "_gdelt_articles", boom)
 
@@ -56,7 +56,7 @@ def test_context_endpoint_falls_back_on_error(monkeypatch):
 
 
 def test_context_endpoint_falls_back_on_empty(monkeypatch):
-    async def empty(query, max_records):
+    async def empty(query, max_records, window=None):
         return []
     monkeypatch.setattr(gdelt, "_gdelt_articles", empty)
 
