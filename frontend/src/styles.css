@@ -15,40 +15,40 @@
 @layer base {
   /* Light — "the filed report" */
   :root {
-    --paper: #f7f6f2;
-    --surface: #ffffff;
-    --surface-sunken: #f1efe8;
-    --ink: #1a160f;
-    --ink-soft: #454034;
-    --muted: #6f6857;
-    --rule: #e6e1d6;
-    --rule-strong: #d2ccbd;
-    --accent: #e0540a;        /* flight-recorder orange */
+    --paper: #f7f3ea;
+    --surface: #fffefb;
+    --surface-sunken: #eee8dc;
+    --ink: #211a14;
+    --ink-soft: #4a3f33;
+    --muted: #6e6255;
+    --rule: #ded5c8;
+    --rule-strong: #c8b8a6;
+    --accent: #a84018;        /* flight-recorder oxide */
     --accent-ink: #ffffff;
-    --accent-wash: #fbeadd;
-    --cyan: #0c6f78;          /* instrument cyan */
-    --danger: #b1331f;
-    --amber: #9a6a00;
+    --accent-wash: #f2e3d8;
+    --cyan: #1b6a6f;          /* instrument cyan */
+    --danger: #8b3542;
+    --amber: #8d650e;
     --shadow: 0 1px 2px rgb(26 22 15 / 0.04), 0 8px 24px -12px rgb(26 22 15 / 0.12);
     color-scheme: light;
   }
 
   /* Dark — "night cockpit" */
   [data-theme="dark"] {
-    --paper: #0c1116;
-    --surface: #121a22;
-    --surface-sunken: #0e151c;
-    --ink: #e9e4d8;
-    --ink-soft: #c2bcae;
-    --muted: #8d97a3;
-    --rule: #21303d;
-    --rule-strong: #324456;
-    --accent: #ff7a33;
-    --accent-ink: #1a0d03;
-    --accent-wash: #2a1709;
-    --cyan: #43c7cd;
-    --danger: #f0675b;
-    --amber: #e7ac46;
+    --paper: #101317;
+    --surface: #171b20;
+    --surface-sunken: #0c1014;
+    --ink: #f0e9de;
+    --ink-soft: #cec3b4;
+    --muted: #a89f94;
+    --rule: #293138;
+    --rule-strong: #3e4952;
+    --accent: #ee9a70;
+    --accent-ink: #101317;
+    --accent-wash: #2c1b13;
+    --cyan: #74c3c7;
+    --danger: #e28a96;
+    --amber: #d5ad61;
     --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -14px rgb(0 0 0 / 0.6);
     color-scheme: dark;
   }
