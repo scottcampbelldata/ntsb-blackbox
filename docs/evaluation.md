@@ -64,5 +64,5 @@ The current suite includes:
 - `tests/test_chart_validator.py`
 - `tests/test_providers.py`
 
-These tests protect the first production-grade guardrails while the app is refactored.
+These tests cover the first set of guardrails while the app is refactored.
 

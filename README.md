@@ -1,4 +1,4 @@
-# Black Box AI - Natural-Language Aviation Safety Analytics
+# Black Box: natural-language aviation safety analytics
 
 Question answering over 7,462 US NTSB aviation accident final reports (2016-2023),
 across a **structured table** (counts and statistics) and the **accident narratives**
@@ -7,7 +7,10 @@ a "black box," but this system is the opposite of one. Every statistic is shown 
 the exact SQL that produced it, and every report is cited to its official NTSB record,
 so nothing is hidden behind generated prose.
 
-**Live demo:** <https://huggingface.co/spaces/account-name/ntsb-blackbox>
+**Live site:** <https://blackbox.scottcampbell.io>
+
+**Original Gradio demo (retrieval and prebuilt analyses only):**
+<https://huggingface.co/spaces/scottcampbelldata/ntsb-blackbox>
 
 ---
 
@@ -32,7 +35,7 @@ model keys, validated Vega-Lite charts, and an audit trail.
 
 ## Design principles
 
-These are the things worth looking at, and the reasons behind them:
+The main choices, and why:
 
 1. **Numbers come from SQL, never generated.** Every statistic in the app is the
    result of a hand-written query, displayed alongside the query itself. There is no
@@ -45,8 +48,7 @@ These are the things worth looking at, and the reasons behind them:
    accident, and lead with the NTSB's own probable-cause statement.
 4. **The public demo runs no LLM, by design.** A public link that called a paid model
    on every query would carry a real cost and abuse risk. Scoping the demo to retrieval
-   and prebuilt queries removes both, and puts the engineering on display rather than
-   hiding it behind generated text. Text-to-SQL and answer synthesis are documented as
+   and prebuilt queries removes both, and keeps the focus on the retrieval and SQL work. Text-to-SQL and answer synthesis are documented as
    a local extension (see Limitations).
 5. **The server rebuild treats models as planners, not authorities.** Generated SQL is
    parsed as Postgres and validated before execution (`src/sql_guard.py`). Generated
@@ -110,7 +112,7 @@ retrievers (`eval/run_eval.py`), at the accident level.
 | Keyword (BM25)  | 0.339    | 0.897 | 1.000 |
 | Hybrid (RRF)    | 0.327    | 0.902 | 1.000 |
 
-**The finding did not match the hypothesis, which is the point.** The initial
+**The result did not match the hypothesis.** The initial
 expectation was that hybrid retrieval would win. It did not. The three strategies are
 statistically indistinguishable in aggregate, and hybrid was in fact the lowest on
 recall. Digging into the per-query results explained why:
@@ -131,9 +133,9 @@ recall. Digging into the per-query results explained why:
 **Conclusion:** hybrid retrieval is insurance for query types you cannot anticipate,
 not a universal upgrade. On a corpus where the answer term reliably appears in the text,
 a single retriever is competitive, so the demo defaults to semantic and offers all three
-for comparison. This was a design decision driven by measurement, not assumption.
+for comparison.
 
-## A genuine safety insight from the data
+## A safety finding from the data
 
 The structured analyses surface a real result: landing is by far the most common phase
 of flight for accidents (about 2,575), but in **fatal** accidents the order inverts, and
@@ -255,8 +257,6 @@ charts:
   improvement.
 
 ## Limitations and future work
-
-Stated plainly, because knowing where a system is imperfect is part of building it well:
 
 - **Manufacturer entity resolution is partial.** `UPPER()` fixes casing, and a curated
   alias map (`MAKE_ALIASES` in `sql_tool.py`) merges high-volume variants such as the
