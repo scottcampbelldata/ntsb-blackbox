@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Black Box — design system
+   Black Box design system
    The subject is aviation accident investigation, so the two themes are named
    from that world: light is "the filed report" (paper), dark is "night cockpit"
    (a cool instrument panel). The signal color is the orange flight recorders are
@@ -13,7 +13,7 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @layer base {
-  /* Light — "the filed report" */
+  /* Light: "the filed report" */
   :root {
     --paper: #f7f3ea;
     --surface: #fffefb;
@@ -33,7 +33,7 @@
     color-scheme: light;
   }
 
-  /* Dark — "night cockpit" */
+  /* Dark: "night cockpit" */
   [data-theme="dark"] {
     --paper: #101317;
     --surface: #171b20;
@@ -133,7 +133,7 @@
     font-feature-settings: "tnum" 1, "ss01" 1;
   }
 
-  /* Eyebrow / kicker — domain vocabulary set as a small mono label. */
+  /* Eyebrow / kicker: domain vocabulary set as a small mono label. */
   .eyebrow {
     font-family: var(--font-mono);
     font-size: 0.6875rem;
@@ -143,7 +143,7 @@
     color: var(--muted);
   }
 
-  /* Prose measure for narrative copy — keep lines readable. */
+  /* Prose measure for narrative copy, to keep lines readable. */
   .measure {
     max-width: 64ch;
   }

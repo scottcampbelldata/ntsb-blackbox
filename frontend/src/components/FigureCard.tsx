@@ -2,8 +2,8 @@ import { ChartView } from "./ChartView";
 import { Disclosure, Eyebrow } from "./primitives";
 import type { AnalysisResult } from "../lib/api";
 
-// The kicker states what the axis measures — a count, a share, or a time
-// series — so the reader knows how to read the bars before reading them.
+// The kicker states what the axis measures (a count, a share, or a time
+// series) so the reader knows how to read the bars before reading them.
 function kickerFor(analysis: AnalysisResult): string {
   if (analysis.key.startsWith("fatal_rate") || analysis.columns.includes("fatal_rate_pct")) {
     return "Share fatal · %";

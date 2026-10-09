@@ -30,7 +30,7 @@ function readStoredMode(): ThemeMode {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === "light" || stored === "dark" || stored === "system") return stored;
   } catch {
-    /* private mode / disabled storage — fall through to system */
+    /* private mode / disabled storage: fall through to system */
   }
   return "system";
 }
