@@ -27,13 +27,13 @@ export function FigureCard({
     >
       <div>
         <Eyebrow>{kickerFor(analysis)}</Eyebrow>
-        <h3
+        <h2
           className={`mt-1 font-display leading-tight text-ink ${
             featured ? "text-2xl sm:text-[1.7rem]" : "text-xl"
           }`}
         >
           {analysis.label}
-        </h3>
+        </h2>
       </div>
 
       <ChartView spec={analysis.chart_spec} rows={analysis.rows} height={featured ? 400 : 300} />
