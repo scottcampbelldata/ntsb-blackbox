@@ -1,5 +1,9 @@
 # Black Box: natural-language aviation safety analytics
 
+**Black Box answers questions about US aviation accidents from NTSB final reports, and shows the SQL and the source report behind every answer.**
+
+Live at [blackbox.scottcampbell.io](https://blackbox.scottcampbell.io). More of my work is at [scottcampbell.io](https://scottcampbell.io).
+
 Question answering over 7,462 US NTSB aviation accident final reports (2016-2023),
 across a **structured table** (counts and statistics) and the **accident narratives**
 (semantic and keyword search). The name is deliberately ironic: a flight recorder is
