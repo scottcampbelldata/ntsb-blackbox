@@ -62,7 +62,7 @@ export function ProviderKeyPanel(props: Props) {
         />
       </label>
       <button
-        className="inline-flex items-center gap-1.5 justify-self-start text-xs text-muted transition-colors hover:text-danger"
+        className="inline-flex min-h-6 items-center gap-1.5 justify-self-start text-sm text-muted transition-colors hover:text-danger"
         onClick={props.onClear}
         type="button"
         title="Clear session key"
