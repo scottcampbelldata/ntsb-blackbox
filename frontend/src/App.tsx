@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Masthead } from "./components/Masthead";
+import { Masthead, CASE_STUDY } from "./components/Masthead";
+import { ConsultFooter } from "./components/SiteFrame";
 import { Findings } from "./pages/Findings";
 import { AskTheRecord } from "./pages/AskTheRecord";
 import { TheData } from "./pages/TheData";
@@ -15,16 +16,19 @@ export default function App() {
           <Route path="/data" element={<TheData />} />
         </Routes>
       </main>
-      <footer className="border-t border-rule">
-        <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8">
-          <p className="text-sm text-muted">
+      <div className="mx-auto mt-14 w-full max-w-6xl px-5 sm:px-8">
+        <div className="border-t border-rule pt-6">
+          <p className="measure text-base text-muted">
             Black Box reads the public record: US NTSB aviation accident final reports. The name is
             ironic: a flight recorder is a black box, but here every figure shows the SQL that
             produced it and every answer cites its source.
           </p>
-          <p className="eyebrow mt-3">NTSB · public domain · not affiliated with the NTSB</p>
+          <p className="mt-2 text-sm text-muted">
+            Source: NTSB, public domain. Not affiliated with the NTSB.
+          </p>
         </div>
-      </footer>
+      </div>
+      <ConsultFooter caseStudy={CASE_STUDY} />
     </div>
   );
 }

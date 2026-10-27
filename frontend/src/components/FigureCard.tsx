@@ -6,9 +6,9 @@ import type { AnalysisResult } from "../lib/api";
 // series) so the reader knows how to read the bars before reading them.
 function kickerFor(analysis: AnalysisResult): string {
   if (analysis.key.startsWith("fatal_rate") || analysis.columns.includes("fatal_rate_pct")) {
-    return "Share fatal · %";
+    return "Share fatal, percent";
   }
-  if (analysis.columns[0] === "year") return "Count · by year";
+  if (analysis.columns[0] === "year") return "Count by year";
   return "Count";
 }
 
@@ -21,7 +21,7 @@ export function FigureCard({
 }) {
   return (
     <figure
-      className={`flex flex-col rounded-lg border border-rule bg-surface p-5 shadow-card sm:p-6 ${
+      className={`flex flex-col rounded-lg border border-rule bg-surface p-5 sm:p-6 ${
         featured ? "gap-4" : "gap-3"
       }`}
     >
@@ -29,7 +29,7 @@ export function FigureCard({
         <Eyebrow>{kickerFor(analysis)}</Eyebrow>
         <h2
           className={`mt-1 font-display leading-tight text-ink ${
-            featured ? "text-2xl sm:text-[1.7rem]" : "text-xl"
+            featured ? "text-2xl sm:text-[1.75rem]" : "text-[1.375rem]"
           }`}
         >
           {analysis.label}

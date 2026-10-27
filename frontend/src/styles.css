@@ -1,12 +1,11 @@
 @import "tailwindcss";
+@import "./preprint-base.css";
 
 /* ---------------------------------------------------------------------------
-   Black Box design system
-   The subject is aviation accident investigation, so the two themes are named
-   from that world: light is "the filed report" (paper), dark is "night cockpit"
-   (a cool instrument panel). The signal color is the orange flight recorders are
-   actually painted; the data secondary is instrument cyan. Newsreader carries the
-   journalism; IBM Plex Mono is the instrument readout for every datum and label.
+   Black Box design system, set in the scottcampbell.io preprint style: a
+   paper ground, slate ink, one teal accent, self hosted serif type and plain
+   2px corners. The chart lead bar takes the accent; the rest take a quiet
+   slate so the order reads before the numbers do.
 --------------------------------------------------------------------------- */
 
 /* dark: utilities key off the data-theme attribute the ThemeProvider sets. */
@@ -15,41 +14,41 @@
 @layer base {
   /* Light: "the filed report" */
   :root {
-    --paper: #f7f3ea;
-    --surface: #fffefb;
-    --surface-sunken: #eee8dc;
-    --ink: #211a14;
-    --ink-soft: #4a3f33;
-    --muted: #6e6255;
-    --rule: #ded5c8;
-    --rule-strong: #c8b8a6;
-    --accent: #a84018;        /* flight-recorder oxide */
+    --paper: #fdfdfc;
+    --surface: #ffffff;
+    --surface-sunken: #eef3f4;
+    --ink: #1b2a30;
+    --ink-soft: #33444a;
+    --muted: #4d5d63;
+    --rule: #d9dfe0;
+    --rule-strong: #b6c1c4;
+    --accent: #28566b;
     --accent-ink: #ffffff;
-    --accent-wash: #f2e3d8;
-    --cyan: #1b6a6f;          /* instrument cyan */
+    --accent-wash: #e4edf0;
+    --cyan: #7a939b;
     --danger: #8b3542;
     --amber: #8d650e;
-    --shadow: 0 1px 2px rgb(26 22 15 / 0.04), 0 8px 24px -12px rgb(26 22 15 / 0.12);
+    --shadow: none;
     color-scheme: light;
   }
 
   /* Dark: "night cockpit" */
   [data-theme="dark"] {
-    --paper: #101317;
-    --surface: #171b20;
-    --surface-sunken: #0c1014;
-    --ink: #f0e9de;
-    --ink-soft: #cec3b4;
-    --muted: #a89f94;
-    --rule: #293138;
-    --rule-strong: #3e4952;
-    --accent: #ee9a70;
-    --accent-ink: #101317;
-    --accent-wash: #2c1b13;
-    --cyan: #74c3c7;
+    --paper: #13191b;
+    --surface: #182023;
+    --surface-sunken: #1a2326;
+    --ink: #e6ecee;
+    --ink-soft: #cdd7da;
+    --muted: #a6b4b9;
+    --rule: #2b3539;
+    --rule-strong: #43525a;
+    --accent: #8cc1d6;
+    --accent-ink: #0f1517;
+    --accent-wash: #1f2d33;
+    --cyan: #6f8c96;
     --danger: #e28a96;
     --amber: #d5ad61;
-    --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px -14px rgb(0 0 0 / 0.6);
+    --shadow: none;
     color-scheme: dark;
   }
 
@@ -75,8 +74,8 @@
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.011em;
+    font-weight: 400;
+    letter-spacing: 0;
     color: var(--ink);
   }
 
@@ -98,9 +97,15 @@
 }
 
 @theme {
-  --font-display: "Newsreader Variable", Georgia, "Times New Roman", serif;
-  --font-sans: "Inter Variable", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+  --font-display: "Libertinus Serif Display", "Source Serif 4", Georgia, serif;
+  --font-sans: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-mono: "Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Plain corners, as on scottcampbell.io. */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
 
   --color-paper: var(--paper);
   --color-surface: var(--surface);
@@ -120,9 +125,9 @@
   --shadow-card: var(--shadow);
 
   /* Editorial display sizes (clamped, fluid). */
-  --text-display: clamp(2.75rem, 1.6rem + 4.6vw, 4.75rem);
-  --text-display--line-height: 0.98;
-  --text-display--letter-spacing: -0.02em;
+  --text-display: clamp(2.25rem, 1.7rem + 2.2vw, 3.25rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: 0;
 }
 
 @layer components {
@@ -135,11 +140,10 @@
 
   /* Eyebrow / kicker: domain vocabulary set as a small mono label. */
   .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0;
     color: var(--muted);
   }
 
@@ -150,10 +154,10 @@
 
   /* Editorial drop-style lead paragraph. */
   .lede {
-    font-family: var(--font-display);
+    font-family: var(--font-sans);
     font-weight: 400;
-    font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.45rem);
-    line-height: 1.5;
+    font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.25rem);
+    line-height: 1.55;
     color: var(--ink-soft);
   }
 }
@@ -170,3 +174,31 @@
     }
   }
 }
+
+/* App strip under the site bar: the tool's own name and its three sections.
+   Not sticky, no blur, so the page reads as a document. */
+@layer components {
+  .app-strip { border-bottom: 1px solid var(--rule); background: var(--paper); }
+  .app-strip-inner {
+    max-width: 72rem; margin: 0 auto; padding: 0 1.25rem; min-height: 3.5rem;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.25rem 1rem;
+  }
+  @media (min-width: 640px) { .app-strip-inner { padding: 0 2rem; } }
+  .app-name { font-family: var(--font-display); font-size: 1.375rem; line-height: 1.2; color: var(--ink); text-decoration: none; }
+  .app-name:hover { color: var(--accent); }
+
+  /* Title band with the summary aside, as on the project pages. */
+  .report-band { display: grid; gap: 2rem; padding: 2.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+  @media (min-width: 900px) { .report-band { grid-template-columns: minmax(0, 1fr) 19rem; gap: 3.5rem; padding-top: 3.25rem; } }
+  .report-kicker { font-family: var(--font-sans); font-size: 1rem; color: var(--muted); margin: 0 0 0.75rem; }
+  .glance { margin: 0; border-top: 2px solid var(--ink); }
+  .glance > div { display: grid; grid-template-columns: 1fr auto; gap: 0.125rem 1rem; align-items: baseline; padding: 0.75rem 0; border-bottom: 1px solid var(--rule); }
+  .glance dt { font-family: var(--font-sans); font-size: 1rem; color: var(--ink); }
+  .glance dd { margin: 0; font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1.125rem; color: var(--ink); text-align: right; }
+  .glance dd.glance-sub { grid-column: 1 / -1; font-family: var(--font-sans); font-size: 0.9375rem; color: var(--muted); text-align: left; }
+}
+
+/* Kit frame on the app's own column (72rem, 1.25rem / 2rem gutters) so every edge lines up.
+   Unlayered, after the kit, so it wins over preprint-base. */
+.pp-bar-inner, .pp-consult-inner, .pp-credit { max-width: 72rem; padding-left: 1.25rem; padding-right: 1.25rem; }
+@media (min-width: 640px) { .pp-bar-inner, .pp-consult-inner, .pp-credit { padding-left: 2rem; padding-right: 2rem; } }

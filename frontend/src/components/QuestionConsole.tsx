@@ -27,7 +27,7 @@ export function QuestionConsole({ question, loading, onQuestionChange, onSubmit 
 
   return (
     <section>
-      <div className="rounded-xl border border-rule bg-surface p-2 shadow-card focus-within:border-accent">
+      <div className="rounded-xl border border-rule bg-surface p-2 focus-within:border-accent">
         <textarea
           value={question}
           onChange={(event) => onQuestionChange(event.target.value)}
@@ -45,7 +45,7 @@ export function QuestionConsole({ question, loading, onQuestionChange, onSubmit 
             type="button"
             onClick={onSubmit}
             disabled={!canSubmit}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-ink transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2.5 text-base font-semibold text-accent-ink transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Send size={15} aria-hidden="true" />
             {loading ? "Reading the record…" : "Ask"}
@@ -61,7 +61,7 @@ export function QuestionConsole({ question, loading, onQuestionChange, onSubmit 
               key={example}
               type="button"
               onClick={() => onQuestionChange(example)}
-              className="rounded-full border border-rule bg-surface px-3 py-1.5 text-left text-xs text-ink-soft transition-colors hover:border-accent hover:text-ink"
+              className="rounded-md border border-rule bg-surface px-3 py-2 text-left text-sm text-ink-soft transition-colors hover:border-accent hover:text-ink"
             >
               {example}
             </button>

@@ -39,8 +39,8 @@ export function TheData() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
       <header className="measure mb-6">
-        <Eyebrow>Provenance &amp; method</Eyebrow>
-        <h1 className="mt-3 font-display text-4xl font-medium text-ink sm:text-5xl">The data</h1>
+        <Eyebrow>Provenance and method</Eyebrow>
+        <h1 className="mt-3 font-display text-4xl text-ink sm:text-[2.75rem]">The data</h1>
         <p className="lede mt-4">
           Where every figure comes from, and what it does not cover. Being explicit about the limits
           is part of trusting the numbers.
@@ -77,7 +77,7 @@ export function TheData() {
             </ul>
           </Block>
 
-          <Block title={`Schema · ${card.table}`}>
+          <Block title={`Schema: ${card.table}`}>
             <div className="overflow-x-auto rounded-md border border-rule">
               <table className="w-full border-collapse text-sm">
                 <thead>

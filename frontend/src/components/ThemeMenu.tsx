@@ -14,7 +14,7 @@ export function ThemeMenu() {
     <div
       role="group"
       aria-label="Color theme"
-      className="inline-flex items-center gap-0.5 rounded-full border border-rule bg-surface-sunken p-0.5"
+      className="inline-flex items-center gap-0.5 rounded-md border border-rule bg-surface-sunken p-0.5"
     >
       {OPTIONS.map(({ mode: value, label, Icon }) => {
         const active = mode === value;
@@ -26,9 +26,9 @@ export function ThemeMenu() {
             title={`${label} theme`}
             onClick={() => setMode(value)}
             className={[
-              "grid h-7 w-7 place-items-center rounded-full transition-colors",
+              "grid h-8 w-8 place-items-center rounded-md transition-colors",
               active
-                ? "bg-surface text-accent shadow-sm"
+                ? "bg-surface text-accent"
                 : "text-muted hover:text-ink"
             ].join(" ")}
           >

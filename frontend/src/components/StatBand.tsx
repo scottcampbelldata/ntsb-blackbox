@@ -1,27 +1,13 @@
 import type { DatasetKpis } from "../lib/api";
 
-function Figure({
-  label,
-  value,
-  sub,
-  accent = false
-}: {
-  label: string;
-  value: string;
-  sub?: string;
-  accent?: boolean;
-}) {
+// The dataset at a glance, set as the summary aside the project pages use.
+// Same four figures the page has always shown, each with its unit line.
+function Row({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
-    <div className="px-5 py-4 first:pl-0">
-      <p className="eyebrow">{label}</p>
-      <p
-        className={`data mt-1.5 text-3xl font-medium leading-none sm:text-4xl ${
-          accent ? "text-accent" : "text-ink"
-        }`}
-      >
-        {value}
-      </p>
-      {sub && <p className="mt-1.5 text-xs text-muted">{sub}</p>}
+    <div>
+      <dt>{label}</dt>
+      <dd>{value}</dd>
+      {sub && <dd className="glance-sub">{sub}</dd>}
     </div>
   );
 }
@@ -33,11 +19,11 @@ export function StatBand({ kpis }: { kpis: DatasetKpis }) {
     kpis.accident_count > 0 ? `${((kpis.fatal_count / kpis.accident_count) * 100).toFixed(1)}% of accidents` : undefined;
 
   return (
-    <div className="grid grid-cols-2 divide-rule border-y border-rule sm:grid-cols-4 sm:divide-x">
-      <Figure label="Accidents" value={kpis.accident_count.toLocaleString("en-US")} sub="final reports" />
-      <Figure label="Fatal" value={kpis.fatal_count.toLocaleString("en-US")} sub={rate} accent />
-      <Figure label="Years covered" value={years} sub="event date" />
-      <Figure label="Aircraft makes" value={kpis.distinct_makes.toLocaleString("en-US")} sub="manufacturers" />
-    </div>
+    <dl className="glance" aria-label="The dataset at a glance">
+      <Row label="Accidents" value={kpis.accident_count.toLocaleString("en-US")} sub="final reports" />
+      <Row label="Fatal" value={kpis.fatal_count.toLocaleString("en-US")} sub={rate} />
+      <Row label="Years covered" value={years} sub="event date" />
+      <Row label="Aircraft makes" value={kpis.distinct_makes.toLocaleString("en-US")} sub="manufacturers" />
+    </dl>
   );
 }

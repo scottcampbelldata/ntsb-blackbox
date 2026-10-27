@@ -1,5 +1,9 @@
 import { NavLink } from "react-router-dom";
 import { ThemeMenu } from "./ThemeMenu";
+import { SiteBar } from "./SiteFrame";
+
+export const CASE_STUDY = "https://scottcampbell.io/projects/black-box-ai/";
+export const REPO = "https://github.com/scottcampbelldata/ntsb-blackbox";
 
 const LINKS = [
   { to: "/", label: "Findings", end: true },
@@ -9,51 +13,43 @@ const LINKS = [
 
 export function Masthead() {
   return (
-    <header className="sticky top-0 z-30 border-b border-rule bg-paper/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <NavLink to="/" className="group flex items-center gap-2.5" aria-label="Black Box home">
-          {/* The recorder: flight data recorders are painted this orange. */}
-          <span
-            aria-hidden="true"
-            className="h-3.5 w-3.5 shrink-0 rounded-[2px] bg-accent shadow-[0_0_0_3px_var(--accent-wash)]"
-          />
-          <span className="font-display text-xl leading-none tracking-tight text-ink">
+    <>
+      <SiteBar caseStudy={CASE_STUDY} repo={REPO} />
+      <div className="app-strip">
+        <div className="app-strip-inner">
+          <NavLink to="/" className="app-name" aria-label="Black Box home">
             Black Box
-          </span>
-        </NavLink>
+          </NavLink>
 
-        <nav className="flex items-center gap-1 sm:gap-2" aria-label="Sections">
-          {LINKS.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.end}
-              className={({ isActive }) =>
-                [
-                  "relative rounded-md px-2.5 py-1.5 text-sm transition-colors sm:px-3",
-                  isActive ? "text-ink" : "text-muted hover:text-ink"
-                ].join(" ")
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span className="hidden sm:inline">{link.label}</span>
-                  <span className="sm:hidden">{link.label.split(" ")[0]}</span>
-                  {isActive && (
-                    <span
-                      aria-hidden="true"
-                      className="absolute inset-x-2.5 -bottom-px h-0.5 rounded-full bg-accent"
-                    />
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
-          <div className="ml-1 sm:ml-3">
+          <nav className="order-3 -ml-2 flex w-full items-center gap-0 sm:order-2 sm:ml-auto sm:w-auto sm:gap-2" aria-label="Sections">
+            {LINKS.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.end}
+                className={({ isActive }) =>
+                  [
+                    "relative whitespace-nowrap px-2 py-3 text-base transition-colors sm:px-3",
+                    isActive ? "text-ink" : "text-muted hover:text-ink"
+                  ].join(" ")
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    {isActive && (
+                      <span aria-hidden="true" className="absolute inset-x-2 bottom-1.5 h-0.5 bg-accent sm:inset-x-3" />
+                    )}
+                  </>
+                )}
+              </NavLink>
+            ))}
+          </nav>
+          <div className="order-2 sm:order-3 sm:ml-1">
             <ThemeMenu />
           </div>
-        </nav>
+        </div>
       </div>
-    </header>
+    </>
   );
 }

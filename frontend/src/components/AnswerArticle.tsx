@@ -9,7 +9,7 @@ import type { AskResponse } from "../types";
 function Byline({ response }: { response: AskResponse }) {
   return (
     <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5">
-      <span className="rounded-full border border-accent px-2 py-0.5 font-mono text-[0.65rem] font-medium uppercase tracking-wider text-accent">
+      <span className="rounded-md border border-accent px-2 py-0.5 font-mono text-xs text-accent">
         {response.route.route}
       </span>
       <span className="data text-xs text-muted">
@@ -26,7 +26,7 @@ function ResultTable({ table }: { table: NonNullable<AskResponse["table"]> }) {
         <thead>
           <tr className="border-b border-rule bg-surface-sunken text-left">
             {table.columns.map((c) => (
-              <th key={c} className="data px-3 py-2 text-xs font-medium uppercase tracking-wide text-muted">
+              <th key={c} className="data px-3 py-2 text-xs font-medium text-muted">
                 {c}
               </th>
             ))}

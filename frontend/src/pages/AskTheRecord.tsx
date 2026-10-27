@@ -51,8 +51,8 @@ export function AskTheRecord() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
       <header className="mb-8">
-        <Eyebrow>Natural-language query</Eyebrow>
-        <h1 className="mt-3 font-display text-4xl font-medium text-ink sm:text-5xl">
+        <Eyebrow>Plain English questions</Eyebrow>
+        <h1 className="mt-3 font-display text-4xl text-ink sm:text-[2.75rem]">
           Ask the record
         </h1>
         <p className="lede mt-4">

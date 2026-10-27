@@ -32,7 +32,7 @@ function ChartTooltip({
   if (!active || !payload?.length) return null;
   const head = categoryKey === "year" ? label : payload[0]?.name ?? label;
   return (
-    <div className="rounded-md border border-rule-strong bg-surface px-3 py-2 shadow-card">
+    <div className="rounded-md border border-rule-strong bg-surface px-3 py-2">
       <p className="eyebrow mb-0.5">{String(head)}</p>
       <p className="data text-sm font-medium text-ink">{fmt(payload[0]?.value)}</p>
     </div>
@@ -90,8 +90,8 @@ export function ChartView({
               cursor={{ fill: "var(--accent-wash)" }}
               content={<ChartTooltip categoryKey={categoryKey} />}
             />
-            <Bar dataKey={valueKey} radius={[0, 3, 3, 0]} maxBarSize={28}>
-              {/* Lead row reads in signal orange; the rest recede to instrument cyan. */}
+            <Bar dataKey={valueKey} radius={[0, 2, 2, 0]} maxBarSize={28}>
+              {/* Lead row takes the accent; the rest recede to slate. */}
               {data.map((_, index) => (
                 <Cell key={index} fill={index === 0 ? "var(--accent)" : "var(--cyan)"} />
               ))}

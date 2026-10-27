@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { StatBand } from "../components/StatBand";
 import { FigureCard } from "../components/FigureCard";
-import { Eyebrow, Skeleton, TraceRule } from "../components/primitives";
+import { Skeleton } from "../components/primitives";
 import {
   fetchAnalyses,
   fetchAnalysis,
@@ -46,29 +46,31 @@ export function Findings() {
 
   return (
     <div className="mx-auto max-w-6xl px-5 sm:px-8">
-      <section className="flex flex-col pt-12 pb-10 sm:pt-20">
-        <Eyebrow>US NTSB · aviation accident final reports</Eyebrow>
-        <h1 className="mt-4 font-display font-medium text-ink" style={{ fontSize: "var(--text-display)", lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)" }}>
-          Most accidents happen on landing. The ones that kill happen aloft.
-        </h1>
-        <p className="lede mt-6 measure">
-          Black Box reads the record on US aviation safety. Every figure below is a live SQL query
-          against the accident database. Expand “View SQL” on any chart to see exactly what produced
-          the number.
-        </p>
-        <TraceRule className="mt-10" />
+      <section className="report-band">
+        <div>
+          <p className="report-kicker">US NTSB aviation accident final reports</p>
+          <h1 className="font-display text-ink" style={{ fontSize: "var(--text-display)", lineHeight: "var(--text-display--line-height)", letterSpacing: "var(--text-display--letter-spacing)" }}>
+            Most accidents happen on landing. The ones that kill happen aloft.
+          </h1>
+          <p className="lede mt-5 measure">
+            Black Box reads the record on US aviation safety. Every figure below is a live SQL query
+            against the accident database. Expand “View SQL” on any chart to see exactly what produced
+            the number.
+          </p>
+        </div>
+        <aside aria-label="Summary">
+          {kpis ? <StatBand kpis={kpis} /> : loading ? <Skeleton className="h-64 w-full" /> : null}
+        </aside>
       </section>
 
-
       {error && (
-        <div className="rounded-lg border border-danger/40 bg-surface p-4 text-sm text-danger">
+        <div className="mt-8 rounded-lg border border-danger/40 bg-surface p-4 text-sm text-danger">
           {error}
         </div>
       )}
 
       {loading && (
-        <div className="space-y-8">
-          <Skeleton className="h-24 w-full" />
+        <div className="mt-10 space-y-8">
           <Skeleton className="h-[440px] w-full" />
           <div className="grid gap-6 sm:grid-cols-2">
             <Skeleton className="h-80 w-full" />
@@ -76,8 +78,6 @@ export function Findings() {
           </div>
         </div>
       )}
-
-      {kpis && <StatBand kpis={kpis} />}
 
       {hero && (
         <div className="mt-10">

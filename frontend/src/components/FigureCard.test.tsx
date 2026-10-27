@@ -34,7 +34,7 @@ describe("FigureCard", () => {
 
   it("labels a rate figure by what its axis measures", () => {
     const { getByText } = render(<FigureCard analysis={rateAnalysis} />);
-    expect(getByText("Share fatal · %")).toBeInTheDocument();
+    expect(getByText("Share fatal, percent")).toBeInTheDocument();
   });
 
   it("labels a plain count figure as a count", () => {
